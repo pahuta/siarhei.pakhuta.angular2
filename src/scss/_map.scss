@@ -1,0 +1,28 @@
+.map-container {
+  display: flex;
+  margin: auto;
+  width: 500px;
+  height: 500px;
+}
+
+//screen width: [640px - 719px]
+@media screen and (max-width: 719px) {
+  .map-container {
+    width: 450px;
+    height: 450px;
+  }
+}
+//screen width: [480px - 639px]
+@media screen and (max-width: 639px) {
+  .map-container {
+    width: 400px;
+    height: 400px;
+  }
+}
+//screen width less 479px
+@media screen and (max-width: 479px) {
+  .map-container {
+    width: 300px;
+    height: 300px;
+  }
+}

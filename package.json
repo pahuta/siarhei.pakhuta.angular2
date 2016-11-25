@@ -1,0 +1,39 @@
+{
+  "name": "angular2_training_epam",
+  "version": "1.0.0",
+  "description": "angular2_training_epam",
+  "scripts": {
+    "build": "webpack --display-error-details",
+    "server": "webpack-dev-server --progress --profile --watch --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pakhuta/siarhei.pakhuta.angular2.git"
+  },
+  "author": "Siarhei Pakhuta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pakhuta/siarhei.pakhuta.angular2/issues"
+  },
+  "homepage": "https://github.com/pakhuta/siarhei.pakhuta.angular2#readme",
+  "devDependencies": {
+    "webpack-dev-server": "1.16.2"
+  },
+  "dependencies": {
+    "@types/core-js": "0.9.34",
+    "@types/googlemaps": "3.25.36",
+    "@types/whatwg-fetch": "0.0.32",
+    "css-loader": "0.26.0",
+    "extract-text-webpack-plugin": "1.0.1",
+    "html-webpack-plugin": "2.24.1",
+    "node-sass": "3.13.0",
+    "resolve-url-loader": "1.6.0",
+    "sass-loader": "4.0.2",
+    "style-loader": "0.13.1",
+    "ts-loader": "1.2.2",
+    "tslint": "4.0.2",
+    "tslint-loader": "3.2.0",
+    "typescript": "2.0.10",
+    "webpack": "1.13.3"
+  }
+}
