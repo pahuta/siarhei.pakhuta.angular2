@@ -21,7 +21,9 @@ export class App {
                 return Weather.getWeather(coords, 50);
             })
             .then((citiesWeather) => {
-                this.weatherTable.drawWeatherTable(citiesWeather);
+                if (citiesWeather) {
+                    this.weatherTable.drawWeatherTable(citiesWeather);
+                }
             });
     }
 
