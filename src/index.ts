@@ -1,6 +1,6 @@
 import {Map} from './app/map';
 import {Weather} from './app/weather';
-import {WeatherTable} from './app/weatherTable';
+import {WeatherTable} from './app/weather-table';
 
 export class App {
     private static currentPosition: Position;
@@ -15,8 +15,7 @@ export class App {
                     longitude: currentPosition.coords.longitude
                 };
 
-                this.initMap();
-                this.initweatherTable();
+                this.initWeatherTable();
 
                 return Weather.getWeather(coords, 50);
             })
@@ -27,12 +26,17 @@ export class App {
             });
     }
 
-    private static initMap(): void {
+    static initMap(): void {
         let mapContainer = document.querySelector('.map-container');
-        this.map = new Map(mapContainer, this.currentPosition);
+
+        if (this.currentPosition) {
+            this.map = new Map(mapContainer, this.currentPosition);
+        } else {
+            this.defineCurrentPosition().then(() => this.map = new Map(mapContainer, this.currentPosition));
+        }
     }
 
-    private static initweatherTable(): void {
+    private static initWeatherTable(): void {
         let weatherTableContainer = document.querySelector('.weather-table-container');
         this.weatherTable = new WeatherTable(weatherTableContainer);
     }

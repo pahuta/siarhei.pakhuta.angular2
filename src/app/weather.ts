@@ -1,9 +1,11 @@
+/// <reference path="./weather.d.ts" />
+import {VARS} from './vars';
+
 export class Weather {
     static getWeather(coordinates: Coords.LatLng, citiesCount: number = 1): Promise<Weather.Cities> {
-        let apiKey = '32a16d119fef9cb2372e11f8f29872ec';
-        let url = `http://api.openweathermap.org/data/2.5/find?lat=${coordinates.latitude}
+        const url = `http://api.openweathermap.org/data/2.5/find?lat=${coordinates.latitude}
                                                               &lon=${coordinates.longitude}&cnt=${citiesCount}
-                                                              &appid=${apiKey}`;
+                                                              &appid=${VARS.WEATHER.API_KEY}`;
 
         return fetch(url)
             .then((response) => {

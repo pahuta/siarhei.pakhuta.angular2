@@ -1,4 +1,4 @@
-import {vars} from './vars';
+import {VARS} from './vars';
 
 export class WeatherTable {
     constructor (private weatherTableContainer: Element) {}
@@ -14,19 +14,21 @@ export class WeatherTable {
 
     private createCityWeatherElement(weatherCity: Weather.City): Element {
         let div = document.createElement('div');
-        div.classList.add('city-weather');
+        div.classList.add('city-weather', 'col-lg-3', 'col-md-4', 'col-sm-6', 'col-xs-12');
 
         div.innerHTML = `
-            <div class="city-name">${weatherCity.name}</div>
-            <div class="weather-icon">
-                <img class="icon" src="${vars.weather.iconUrl + weatherCity.weather[0].icon}.png">
-            </div>
-            <div class="weather-data">
-                <div class="temperature">${WeatherTable.convertTemperature(weatherCity.main.temp)}</div>
-                <div class="humidity">${weatherCity.main.humidity}%</div>
-                <div class="wind">${WeatherTable.convertWind(weatherCity.wind.speed)}</div>
-                <div class="pressure">${WeatherTable.convertPressure(weatherCity.main.pressure)}</div>        
-            </div>
+            <div class="panel">
+                <div class="city-name">${weatherCity.name}</div>
+                <div class="weather-icon">
+                    <img class="icon" src="${VARS.WEATHER.ICON_URL + weatherCity.weather[0].icon}.png">
+                </div>
+                <div class="weather-data">
+                    <div class="temperature">${WeatherTable.convertTemperature(weatherCity.main.temp)}</div>
+                    <div class="humidity">${weatherCity.main.humidity}%</div>
+                    <div class="wind">${WeatherTable.convertWind(weatherCity.wind.speed)}</div>
+                    <div class="pressure">${WeatherTable.convertPressure(weatherCity.main.pressure)}</div>        
+                </div>
+            </div>            
         `;
 
         return div;

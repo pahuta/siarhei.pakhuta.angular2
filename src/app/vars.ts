@@ -1,10 +1,11 @@
-export const vars = {
-    map: {
-        init: {
+export const VARS = {
+    MAP: {
+        INIT: {
             zoom: 14
         }
     },
-    weather: {
-        iconUrl: 'http://openweathermap.org/img/w/'
+    WEATHER: {
+        API_KEY: '32a16d119fef9cb2372e11f8f29872ec',
+        ICON_URL: 'http://openweathermap.org/img/w/'
     }
 };
