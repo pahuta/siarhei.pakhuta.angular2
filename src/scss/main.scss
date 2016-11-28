@@ -1,39 +1,7 @@
 @import "map";
-@import "weatherTable";
+@import "weather-table";
 
 .layout {
-  width: 960px;
-  margin: auto;
+  margin-top: 24px;
 }
 
-//screen width: [768px - 1000px]
-@media screen and (max-width: 1000px) {
-  .layout {
-    width: 760px;
-  }
-}
-
-//screen width: [720px - 767px]
-@media screen and (max-width: 767px) {
-  .layout {
-    width: 700px;
-  }
-}
-//screen width: [640px - 719px]
-@media screen and (max-width: 719px) {
-  .layout {
-    width: 620px;
-  }
-}
-//screen width: [480px - 639px]
-@media screen and (max-width: 639px) {
-  .layout {
-    width: 460px;
-  }
-}
-//screen width less 479px
-@media screen and (max-width: 479px) {
-  .layout {
-    width: 320px;
-  }
-}
