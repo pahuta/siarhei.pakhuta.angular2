@@ -1,43 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { VARS } from '../vars';
+import { ICoords } from '../app/app.component';
 
 @Component({
     selector: 'map',
     template: require('./map.component.html'),
     styles: [require('./map.component.scss').toString()]
 })
-export class MapComponent implements OnInit {
-    currentPosition: IMapCoords = {
-        lat: 0,
-        lng: 0
-    };
-    zoom: number = 10;
+export class MapComponent {
     isLoading: boolean = false;
 
-    constructor() {}
+    @Input() currentPosition: ICoords;
+    @Input() zoom: number;
 
-    ngOnInit() {
-        if (navigator.geolocation) {
-            this.isLoading = true;
-            navigator.geolocation.getCurrentPosition(
-                (position: Position) => {
-                    this.currentPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    this.isLoading = false;
-                },
-                () => {
-                    this.isLoading = false;
-                }
-            );
-        }
-
-        this.zoom = VARS.map.init.zoom;
+    constructor() {
+        this.zoom = this.zoom || VARS.map.init.zoom;
     }
-}
-
-interface IMapCoords {
-    lat: number;
-    lng: number;
 }

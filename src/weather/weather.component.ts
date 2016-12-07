@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {WeatherData, CityWeatherData} from './weather.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { WeatherData, CityWeatherData } from './weather.model';
 import { VARS } from '../vars';
+import { ICoords } from '../app/app.component';
 
 @Component({
     selector: 'weather',
@@ -12,38 +13,27 @@ export class WeatherComponent implements OnInit {
     iconUrl: string;
     isLoading: boolean = false;
 
-    constructor() {}
+    @Input() currentPosition: ICoords;
+    @Input() cityCount: number;
+
+    constructor() {
+        this.iconUrl = VARS.weather.icon_url;
+        this.cityCount = this.cityCount || VARS.weather.cityCount;
+    }
 
     ngOnInit() {
-        this.iconUrl = VARS.weather.icon_url;
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position: Position) => {
-
-                let url = `http://api.openweathermap.org/data/2.5/find?lat=${position.coords.latitude}
-                                                              &lon=${position.coords.longitude}&cnt=${50}
-                                                              &appid=${VARS.weather.api_key}`;
-
-                this.isLoading = true;
-                fetch(url)
-                    .then((response) => {
-                        if (response.status === 200) {
-                            return response.json();
-                        } else {
-                            return JSON.parse(VARS.weather.mock);
-                        }
-                    })
-                    .catch(() => {
-                        return JSON.parse(VARS.weather.mock);
-                    })
-                    .then((data: WeatherData) => {
-                        if (data && data.list) {
-                            this.data = data.list;
-                        }
-                        this.isLoading = false;
-                    });
+        this.isLoading = true;
+        this.getWeatherData()
+            .catch(() => {
+                return JSON.parse(VARS.weather.mock);
+            })
+            .then((data: WeatherData) => {
+                if (data && data.list) {
+                    this.data = data.list;
+                }
+                this.isLoading = false;
             });
-        }
+
     }
 
     convertTemperature(temperature: number, targetScale: string = 'C', precision: number = 0): string {
@@ -87,5 +77,20 @@ export class WeatherComponent implements OnInit {
         }
 
         return convertedPressure;
+    }
+
+    private getWeatherData(): Promise<WeatherData> {
+        let url = `http://api.openweathermap.org/data/2.5/find?lat=${this.currentPosition.lat}
+                                                              &lon=${this.currentPosition.lng}&cnt=${this.cityCount}
+                                                              &appid=${VARS.weather.api_key}`;
+
+        return fetch(url)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return JSON.parse(VARS.weather.mock);
+                }
+            });
     }
 }
