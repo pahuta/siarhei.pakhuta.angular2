@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { VARS } from '../vars';
 
 @Component({
@@ -7,31 +7,37 @@ import { VARS } from '../vars';
     styles: [require('./map.component.scss').toString()]
 })
 export class MapComponent implements OnInit {
-    currentPosition: google.maps.LatLng;
+    currentPosition: IMapCoords = {
+        lat: 0,
+        lng: 0
+    };
+    zoom: number = 10;
     isLoading: boolean = false;
-    private map: google.maps.Map;
 
-    constructor(
-        public element: ElementRef
-    ) {
-    }
+    constructor() {}
 
     ngOnInit() {
-        setTimeout(() => {
-            if (navigator.geolocation) {
-                this.isLoading = true;
-                navigator.geolocation.getCurrentPosition(
-                    (position: Position) => {
-                        this.map = new google.maps.Map(this.element.nativeElement, VARS.map.init);
-                        this.currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        this.map.setCenter(this.currentPosition);
-                        this.isLoading = true;
-                    },
-                    () => {
-                        this.isLoading = true;
-                    }
-                );
-            }
-        }, 1000);
+        if (navigator.geolocation) {
+            this.isLoading = true;
+            navigator.geolocation.getCurrentPosition(
+                (position: Position) => {
+                    this.currentPosition = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    this.isLoading = false;
+                },
+                () => {
+                    this.isLoading = false;
+                }
+            );
+        }
+
+        this.zoom = VARS.map.init.zoom;
     }
+}
+
+interface IMapCoords {
+    lat: number;
+    lng: number;
 }

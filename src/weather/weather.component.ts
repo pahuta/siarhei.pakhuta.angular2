@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { VARS } from '../vars';
 import {WeatherData, CityWeatherData} from './weather.model';
+import { VARS } from '../vars';
 
 @Component({
     selector: 'weather',
@@ -25,7 +25,7 @@ export class WeatherComponent implements OnInit {
                                                               &appid=${VARS.weather.api_key}`;
 
                 this.isLoading = true;
-                /*fetch(url)
+                fetch(url)
                     .then((response) => {
                         if (response.status === 200) {
                             return response.json();
@@ -41,9 +41,7 @@ export class WeatherComponent implements OnInit {
                             this.data = data.list;
                         }
                         this.isLoading = false;
-                    });*/
-                this.isLoading = false;
-                this.data = JSON.parse(VARS.weather.mock).list;
+                    });
             });
         }
     }
