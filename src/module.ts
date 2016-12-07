@@ -1,19 +1,18 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import 'reflect-metadata';
-import "zone.js/dist/zone";
-
-import {AppComponent}  from './app/main/src/components/app.component';
-import {MapComponent} from './app/main/src/components/map.component';
-import {WeatherComponent} from './app/main/src/components/weather.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { MapComponent } from './map/map.component';
+import { WeatherComponent } from './weather/weather.component';
+import {LoaderComponent} from './loader/loader.component';
 
 @NgModule({
-    imports:      [BrowserModule],
+    imports: [BrowserModule],
     declarations: [
         AppComponent,
         MapComponent,
-        WeatherComponent
+        WeatherComponent,
+        LoaderComponent
     ],
-    bootstrap:    [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

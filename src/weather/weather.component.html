@@ -1,0 +1,22 @@
+<loader [ngClass]="{'show-loader': isLoading}"></loader>
+<div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
+         *ngFor="let weatherCity of data">
+        <div class="city-weather">
+            <div class="main-data">
+                <div class="shortcut">
+                    <div class="weather-icon">
+                        <img class="icon" src="{{iconUrl + weatherCity.weather[0].icon}}.png">
+                    </div>
+                    <div class="city-name">{{weatherCity.name}}</div>
+                </div>
+                <div class="temperature">{{convertTemperature(weatherCity.main.temp)}}</div>
+            </div>
+            <div class="other-data">
+                <div class="humidity">{{weatherCity.main.humidity}}%</div>
+                <div class="wind">{{convertWind(weatherCity.wind.speed)}}</div>
+                <div class="pressure">{{convertPressure(weatherCity.main.pressure)}}</div>
+            </div>
+        </div>
+    </div>
+</div>

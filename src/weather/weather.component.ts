@@ -1,40 +1,49 @@
-/// <reference path="./weather.d.ts" />
-import {Component, ElementRef} from '@angular/core';
-import {template} from '../tpl/weather.tpl';
-import {VARS} from '../../../../vars';
+import {Component, OnInit} from '@angular/core';
+import { VARS } from '../vars';
+import {WeatherData, CityWeatherData} from './weather.model';
 
 @Component({
     selector: 'weather',
-    template: template,
+    template: require('./weather.component.html'),
+    styles: [require('./weather.component.scss').toString()],
 })
-export class WeatherComponent  {
-    weatherData: Weather.City[];
-    weatherIconUrl: string;
+export class WeatherComponent implements OnInit {
+    data: CityWeatherData[];
+    iconUrl: string;
+    isLoading: boolean = false;
 
-    constructor(
-        public element: ElementRef
-    ) {
-    }
+    constructor() {}
 
     ngOnInit() {
-        this.weatherIconUrl = VARS.WEATHER.ICON_URL;
+        this.iconUrl = VARS.weather.icon_url;
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position: Position) => {
 
-                const url = `http://api.openweathermap.org/data/2.5/find?lat=${position.coords.latitude}
+                let url = `http://api.openweathermap.org/data/2.5/find?lat=${position.coords.latitude}
                                                               &lon=${position.coords.longitude}&cnt=${50}
-                                                              &appid=${VARS.WEATHER.API_KEY}`;
+                                                              &appid=${VARS.weather.api_key}`;
 
-                fetch(url)
+                this.isLoading = true;
+                /*fetch(url)
                     .then((response) => {
                         if (response.status === 200) {
                             return response.json();
+                        } else {
+                            return JSON.parse(VARS.weather.mock);
                         }
                     })
-                    .then((weatherData: Weather.Cities) => {
-                        this.weatherData = weatherData.list;
-                    });
+                    .catch(() => {
+                        return JSON.parse(VARS.weather.mock);
+                    })
+                    .then((data: WeatherData) => {
+                        if (data && data.list) {
+                            this.data = data.list;
+                        }
+                        this.isLoading = false;
+                    });*/
+                this.isLoading = false;
+                this.data = JSON.parse(VARS.weather.mock).list;
             });
         }
     }
