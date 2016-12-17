@@ -14,8 +14,3 @@
         <div class="pressure">{{cityWeatherData.main.pressure | pressure}}</div>
     </div>
 </div>
-
-<div *ngIf="!cityWeatherData" class="no-weather-data">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span>Something wrong. Try again later</span>
-</div>

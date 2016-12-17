@@ -16,7 +16,7 @@ export class WeatherComponent implements OnInit {
     data: Observable<WeatherData>;
     iconUrl: string;
 
-    @Input() currentPosition: Coords;
+    @Input() currentPositionPromise: Promise<Coords>;
     @Input() cityCount: number;
 
     constructor(private http: Http) {
@@ -25,12 +25,15 @@ export class WeatherComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.data = this.getWeatherData();
+        this.currentPositionPromise
+            .then((coords: Coords) => {
+                this.data = this.getWeatherData(coords);
+            });
     }
 
-    private getWeatherData(): Observable<WeatherData> {
-        let url = `http://api.openweathermap.org/data/2.5/find?lat=${this.currentPosition.lat}
-                                                              &lon=${this.currentPosition.lng}&cnt=${this.cityCount}
+    private getWeatherData(coords: Coords): Observable<WeatherData> {
+        let url = `http://api.openweathermap.org/data/2.5/find?lat=${coords.lat}
+                                                              &lon=${coords.lng}&cnt=${this.cityCount}
                                                               &appid=${VARS.weatherConfig.api_key}`;
 
         return this.http.get(url)

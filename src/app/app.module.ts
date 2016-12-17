@@ -9,7 +9,7 @@ import { MapComponent } from './map';
 import { WeatherComponent, TemperaturePipe, WindPipe, PressurePipe } from './weather';
 import { WeatherWidgetComponent } from './weather-widget';
 import { LoaderComponent } from './loader';
-import { CustomCityWeatherComponent } from './custom-city-weather';
+import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weather';
 
 @NgModule({
     imports: [
@@ -29,7 +29,8 @@ import { CustomCityWeatherComponent } from './custom-city-weather';
         CustomCityWeatherComponent,
         TemperaturePipe,
         WindPipe,
-        PressurePipe
+        PressurePipe,
+        CityWeatherPipe
     ],
     bootstrap: [AppComponent]
 })
