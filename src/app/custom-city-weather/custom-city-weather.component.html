@@ -1,0 +1,7 @@
+<div class="input-group input-group-lg">
+    <input type="text" #cityNameInput="ngModel" class="form-control" placeholder="Enter city name" ngModel required>
+    <span class="input-group-btn">
+        <button [disabled]="!cityNameInput.valid" type="button" class="btn btn-default" (click)="getCityWeatherData(cityNameInput.value)">Get weather!</button>
+    </span>
+</div>
+<weather-widget [cityWeatherData]="cityName | cityWeather"></weather-widget>

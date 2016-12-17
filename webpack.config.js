@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/main.ts',
-        styles: './src/app/main/scss/main.scss'
+        app: './src/main.ts'
     },
 
     output: {
@@ -14,7 +14,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.ts'],
+        extensions: ['', '.js', '.ts', '.html'],
         modulesDirectories: ['node_modules']
     },
 
@@ -33,6 +33,10 @@ module.exports = {
             {
                 test: /\.ts$/,
                 loader: 'ts-loader'
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
             }
         ]
     },
@@ -64,6 +68,11 @@ module.exports = {
 
         new ExtractTextPlugin('style.css', {
             allChunks: true
-        })
+        }),
+
+        new CopyWebpackPlugin([{
+            from: 'src/mock',
+            to: 'mock'
+        }])
     ]
 };

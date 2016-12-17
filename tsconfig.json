@@ -13,7 +13,9 @@
     "types": [
       "core-js",
       "googlemaps",
-      "whatwg-fetch"
+      "moment",
+      "whatwg-fetch",
+      "node"
     ]
   }
 }
