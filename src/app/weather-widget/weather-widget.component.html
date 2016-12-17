@@ -1,0 +1,21 @@
+<div *ngIf="cityWeatherData">
+    <div class="main-data">
+        <div class="shortcut">
+            <div class="weather-icon">
+                <img class="icon" src="{{iconUrl + cityWeatherData.weather[0].icon}}.png">
+            </div>
+            <div class="city-name">{{cityWeatherData.name}}</div>
+        </div>
+        <div class="temperature">{{cityWeatherData.main.temp | temperature}}</div>
+    </div>
+    <div class="other-data">
+        <div class="humidity">{{cityWeatherData.main.humidity}}%</div>
+        <div class="wind">{{cityWeatherData.wind.speed | wind}}</div>
+        <div class="pressure">{{cityWeatherData.main.pressure | pressure}}</div>
+    </div>
+</div>
+
+<div *ngIf="!cityWeatherData" class="no-weather-data">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span>Something wrong. Try again later</span>
+</div>

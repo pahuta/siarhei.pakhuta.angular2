@@ -1,4 +1,4 @@
-import { WeatherCoords, Main, CityWeather, Wind } from './'
+import { WeatherCoords, Main, CityWeather, Wind, Sys } from './'
 
 export class CityWeatherData {
     clouds: {all: number};
@@ -7,7 +7,10 @@ export class CityWeatherData {
     id: number;
     main: Main;
     name: string;
-    sys: {country: string};
+    sys: Sys;
     weather: CityWeather[];
     wind: Wind;
+    base?: string;
+    visibility?: number;
+    cod?: number;
 }

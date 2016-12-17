@@ -7,13 +7,10 @@ import 'rxjs/add/operator/catch';
 import { WeatherData, CityWeatherData } from './';
 import { VARS } from './';
 import { Coords } from '../shared';
-import {get} from 'http';
-import {Subscribable} from 'rxjs/Observable';
 
 @Component({
     selector: 'weather',
     template: require('./weather.component.html'),
-    styles: [require('./weather.component.scss').toString()],
 })
 export class WeatherComponent implements OnInit {
     data: CityWeatherData[];
@@ -44,7 +41,6 @@ export class WeatherComponent implements OnInit {
                                                               &lon=${this.currentPosition.lng}&cnt=${this.cityCount}
                                                               &appid=${VARS.weatherConfig.api_key}`;
 
-        console.log(this.currentPosition.lat, this.currentPosition.lng);
         return this.http.get(url)
             .catch(this.getMockWeather.bind(this))
             .map((response: Response) => response.json() as WeatherData);

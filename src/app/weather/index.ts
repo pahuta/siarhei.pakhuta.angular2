@@ -6,6 +6,7 @@ export * from './main.model';
 export * from './weather-data.model';
 export * from './city-weather.model';
 export * from './wind.model';
+export * from './sys.model';
 export * from './vars';
 export * from './temperature.pipe';
 export * from './wind.pipe';

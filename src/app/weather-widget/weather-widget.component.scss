@@ -1,0 +1,62 @@
+@import "../../colors";
+
+weather-widget {
+  display: block;
+  margin-top: 24px;
+  color: $white;
+  background: linear-gradient(135deg,  #30617f 0%, #94d4c6 100%);
+  text-shadow: 0 1px 2px $medium-gray;
+
+  .main-data {
+    display: flex;
+
+    .shortcut {
+      display: flex;
+      flex-basis: 50%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .city-name {
+        height: 40px;
+        font-size: 14px;
+        text-align: center;
+        overflow: hidden;
+      }
+    }
+
+    .temperature {
+      display: flex;
+      flex-basis: 50%;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: bold;
+    }
+  }
+
+  .other-data {
+    display: flex;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    background: linear-gradient(to bottom, rgba(223, 235, 239, 0.51) 0%, rgba(244, 250, 252, 0.5) 100%);
+
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 33%;
+
+      &:nth-of-type(n+2) {
+        border-left: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+  }
+
+  .no-weather-data {
+    padding: 60px 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+  }
+}
