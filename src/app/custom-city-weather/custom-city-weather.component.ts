@@ -11,7 +11,7 @@ import { CityWeatherData } from '../weather';
     template: require('./custom-city-weather.component.html'),
     styles: [require('./custom-city-weather.component.scss').toString()],
 })
-export class CustomCityWeatherComponent {
+export class CustomCityWeatherComponent{
     isDataNeverLoaded: boolean = true;
     isLoading: boolean = false;
     cityWeatherData: CityWeatherData;

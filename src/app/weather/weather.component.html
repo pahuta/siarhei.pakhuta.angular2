@@ -1,6 +1,6 @@
-<loader [ngClass]="{'show-loader': isLoading}"></loader>
+<loader [ngClass]="{'show-loader': !(data | async)?.list}"></loader>
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of data">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of (data | async)?.list">
         <weather-widget [cityWeatherData]="cityWeatherData"></weather-widget>
     </div>
 </div>

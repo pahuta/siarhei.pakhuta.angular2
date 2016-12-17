@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { WeatherData, CityWeatherData } from './';
+import { WeatherData } from './';
 import { VARS } from './';
 import { Coords } from '../shared';
 
@@ -13,9 +13,8 @@ import { Coords } from '../shared';
     template: require('./weather.component.html'),
 })
 export class WeatherComponent implements OnInit {
-    data: CityWeatherData[];
+    data: Observable<WeatherData>;
     iconUrl: string;
-    isLoading: boolean = false;
 
     @Input() currentPosition: Coords;
     @Input() cityCount: number;
@@ -26,14 +25,7 @@ export class WeatherComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isLoading = true;
-        this.getWeatherData()
-            .subscribe((data: WeatherData) => {
-                if (data && data.list) {
-                    this.data = data.list;
-                }
-                this.isLoading = false;
-            });
+        this.data = this.getWeatherData();
     }
 
     private getWeatherData(): Observable<WeatherData> {
