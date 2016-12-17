@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
     styles: [require('./loader.component.scss').toString()]
 })
 export class LoaderComponent  {
+
 }

@@ -10,12 +10,12 @@
                     </div>
                     <div class="city-name">{{weatherCity.name}}</div>
                 </div>
-                <div class="temperature">{{convertTemperature(weatherCity.main.temp)}}</div>
+                <div class="temperature">{{weatherCity.main.temp | temperature}}</div>
             </div>
             <div class="other-data">
                 <div class="humidity">{{weatherCity.main.humidity}}%</div>
-                <div class="wind">{{convertWind(weatherCity.wind.speed)}}</div>
-                <div class="pressure">{{convertPressure(weatherCity.main.pressure)}}</div>
+                <div class="wind">{{weatherCity.wind.speed | wind}}</div>
+                <div class="pressure">{{weatherCity.main.pressure | pressure}}</div>
             </div>
         </div>
     </div>
