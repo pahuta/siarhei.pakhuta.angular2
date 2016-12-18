@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 16px;
+  color: #464547;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.layout {
+  margin-top: 24px;
+}
+
+app {
+  display: block;
+  height: 100%;
+}
+
+main {
+  flex-grow: 2;
+}
+
+header {
+  height: 100px;
+  flex-shrink: 0;
+  background-color: #464547;
+}
+
+footer {
+  height: 60px;
+  margin-top: 24px;
+  flex-shrink: 0;
+  background-color: #464547;
+}
+
+map {
+  padding: 0;
+}
+
+map .sebm-google-map-container {
+  display: block;
+  height: 400px;
+}
+
+weather-widget {
+  display: block;
+  margin-top: 24px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #30617f 0%, #94d4c6 100%);
+  text-shadow: 0 1px 2px #666666;
+}
+
+weather-widget .main-data {
+  display: flex;
+}
+
+weather-widget .main-data .shortcut {
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+weather-widget .main-data .shortcut .city-name {
+  height: 40px;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+}
+
+weather-widget .main-data .temperature {
+  display: flex;
+  flex-basis: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+weather-widget .other-data {
+  display: flex;
+  height: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, rgba(223, 235, 239, 0.51) 0%, rgba(244, 250, 252, 0.5) 100%);
+}
+
+weather-widget .other-data > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 33%;
+}
+
+weather-widget .other-data > div:nth-of-type(n+2) {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+weather-widget .no-weather-data {
+  padding: 60px 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+
+loader {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+loader.show-loader {
+  display: flex;
+}
+
+loader .circle-loader {
+  width: 70px;
+  height: 70px;
+  border: 6px solid #CCCCCC;
+  border-top-color: #39C2D7;
+  border-radius: 50%;
+  animation: loader-animation 1.5s linear infinite;
+}
+
+@keyframes loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+custom-city-weather {
+  display: block;
+  margin-top: 24px;
+}
+
+
+/*# sourceMappingURL=style.css.map*/
