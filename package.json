@@ -2,14 +2,12 @@
   "name": "angular2_training_epam",
   "version": "1.0.0",
   "description": "angular2_training_epam",
-  "main": "server.js",
   "scripts": {
-    "start": "webpack",
     "build": "webpack --display-error-details",
     "server": "webpack-dev-server --progress --profile --watch --inline"
   },
   "engines": {
-    "node": "7.0.0",
+    "node": "4.6.0",
     "npm": "3.10.8"
   },
   "repository": {
