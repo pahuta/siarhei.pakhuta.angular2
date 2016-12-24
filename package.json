@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "angular2_training_epam",
   "scripts": {
+    "start": "npm run build && node server",
     "build": "webpack --display-error-details",
     "server": "webpack-dev-server --progress --profile --watch --inline"
   },
