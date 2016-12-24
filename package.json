@@ -4,6 +4,7 @@
   "description": "angular2_training_epam",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "build": "webpack --display-error-details",
     "server": "webpack-dev-server --progress --profile --watch --inline"
   },
