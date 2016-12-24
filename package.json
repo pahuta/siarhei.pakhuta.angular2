@@ -9,7 +9,7 @@
     "server": "webpack-dev-server --progress --profile --watch --inline"
   },
   "engines": {
-    "node": "4.6.0",
+    "node": "7.0.0",
     "npm": "3.10.8"
   },
   "repository": {
