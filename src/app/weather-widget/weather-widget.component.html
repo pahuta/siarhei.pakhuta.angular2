@@ -6,11 +6,11 @@
             </div>
             <div class="city-name">{{cityWeatherData.name}}</div>
         </div>
-        <div class="temperature">{{cityWeatherData.main.temp | temperature}}</div>
+        <div class="temperature">{{cityWeatherData.main.temp | temperature:displayModes.temperature}}</div>
     </div>
     <div class="other-data">
         <div class="humidity">{{cityWeatherData.main.humidity}}%</div>
-        <div class="wind">{{cityWeatherData.wind.speed | wind}}</div>
-        <div class="pressure">{{cityWeatherData.main.pressure | pressure}}</div>
+        <div class="wind">{{cityWeatherData.wind.speed | wind:displayModes.wind}}</div>
+        <div class="pressure">{{cityWeatherData.main.pressure | pressure:displayModes.pressure}}</div>
     </div>
 </div>

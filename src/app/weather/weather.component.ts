@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { WeatherData } from './';
 import { VARS } from './';
-import { Coords } from '../shared';
+import { Coords, DisplayModes } from '../shared';
 
 @Component({
     selector: 'weather',
@@ -18,6 +18,7 @@ export class WeatherComponent implements OnInit {
 
     @Input() currentPositionPromise: Promise<Coords>;
     @Input() cityCount: number;
+    @Input() displayModes: DisplayModes;
 
     constructor(private http: Http) {
         this.iconUrl = VARS.weatherConfig.icon_url;

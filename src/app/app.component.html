@@ -1,5 +1,26 @@
 <div class="wrapper">
     <header>
+        <div class="display-modes">
+            <div class="toogle-menu-btn" (click)="isOpenDisplayModesMenu = !isOpenDisplayModesMenu">
+                <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+            </div>
+            <div class="btn-group" [ngClass]="{open: isOpenDisplayModesMenu}">
+                <ul class="dropdown-menu">
+                    <li class="sub-title"><a>Temperature</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.temperature === 'k'}"><a (click)="setScale('temperature', 'k')">K</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.temperature === 'c'}"><a (click)="setScale('temperature', 'c')">°C</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.temperature === 'f'}"><a (click)="setScale('temperature', 'f')">°F</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="sub-title"><a>Wind</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.wind === 'km/h'}"><a (click)="setScale('wind', 'km/h')">km/h</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.wind === 'm/s'}"><a (click)="setScale('wind', 'm/s')">m/s</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="sub-title"><a>Pressure</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.pressure === 'hpa'}"><a (click)="setScale('pressure', 'hpa')">hpa</a></li>
+                    <li [ngClass]="{selected: appOptions.displayModes.pressure === 'mmHg'}"><a (click)="setScale('pressure', 'mmHg')">mmHg</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
 
     <main class="layout">
@@ -18,7 +39,7 @@
         </div>
 
         <div class="container">
-            <weather [currentPositionPromise]="currentPositionPromise" [cityCount]="50"></weather>
+            <weather [currentPositionPromise]="currentPositionPromise" [cityCount]="50" [displayModes]="appOptions.displayModes"></weather>
         </div>
     </main>
 

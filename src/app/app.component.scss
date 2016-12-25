@@ -1,5 +1,7 @@
 @import "../colors";
 
+$display-modes-margin-right: 24px;
+
 * {
   box-sizing: border-box;
 }
@@ -34,6 +36,51 @@ header {
   height: 100px;
   flex-shrink: 0;
   background-color: $dark-gray;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .display-modes {
+    cursor: pointer;
+
+    .toogle-menu-btn {
+      font-size: 24px;
+      margin-right: $display-modes-margin-right;
+      color: $light-gray;
+
+      &:hover {
+        color: $white;
+      }
+    }
+
+    .btn-group {
+      .dropdown-menu {
+        top: -12px;
+        right: -$display-modes-margin-right;
+        left: auto;
+
+        .sub-title {
+          text-align: center;
+          cursor: default;
+
+          a {
+            color: $medium-gray;
+
+            &:hover {
+              background-color: transparent;
+              background-image: none;
+            }
+          }
+        }
+
+        .selected {
+          a {
+            background-color: #F4F4F4;
+          }
+        }
+      }
+    }
+  }
 }
 
 footer {

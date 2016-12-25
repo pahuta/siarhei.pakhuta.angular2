@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+
 import { CityWeatherData, VARS } from '../weather';
+import { DisplayModes } from '../shared';
 
 @Component({
     selector: 'weather-widget',
@@ -10,6 +12,7 @@ export class WeatherWidgetComponent {
     iconUrl: string;
 
     @Input() cityWeatherData: CityWeatherData;
+    @Input() displayModes: DisplayModes;
 
     constructor() {
         this.iconUrl = VARS.weatherConfig.icon_url;
