@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { VARS } from './';
 import { Coords } from '../shared';
 
 @Component({
@@ -15,6 +14,6 @@ export class MapComponent {
     @Input() zoom: number;
 
     constructor() {
-        this.zoom = this.zoom || VARS.mapConfig.init.zoom;
+        this.zoom = this.zoom || 10;
     }
 }

@@ -4,21 +4,21 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { WeatherData } from './';
-import { VARS } from './';
-import { Coords, DisplayModes } from '../shared';
+import { WeatherData } from './weather-data.model';
+import { VARS } from './vars';
+import { Coords, UserSettings } from '../shared';
 
 @Component({
     selector: 'weather',
     template: require('./weather.component.html'),
 })
 export class WeatherComponent implements OnInit {
-    data: Observable<WeatherData>;
-    iconUrl: string;
-
     @Input() currentPositionPromise: Promise<Coords>;
     @Input() cityCount: number;
-    @Input() displayModes: DisplayModes;
+    @Input() userSettings: UserSettings;
+
+    data: Observable<WeatherData>;
+    iconUrl: string;
 
     constructor(private http: Http) {
         this.iconUrl = VARS.weatherConfig.icon_url;
@@ -30,6 +30,17 @@ export class WeatherComponent implements OnInit {
             .then((coords: Coords) => {
                 this.data = this.getWeatherData(coords);
             });
+    }
+
+    favoriteCityChange($event: {name: string}) {
+        if (this.userSettings.favoriteCity === $event.name) {
+            this.userSettings.favoriteCity = '';
+        } else {
+            this.userSettings.favoriteCity = $event.name;
+        }
+
+
+        this.userSettings = Object.assign({}, this.userSettings);
     }
 
     private getWeatherData(coords: Coords): Observable<WeatherData> {

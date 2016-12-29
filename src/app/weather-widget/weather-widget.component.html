@@ -1,3 +1,17 @@
+<div class="controls-container" *ngIf="!hideControls">
+    <!--<div class="control add" title="Add to list">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </div>
+    <div class="control delete" title="Remove from list">
+        <i class="fa fa-minus" aria-hidden="true"></i>
+    </div>-->
+    <div class="control favorite"
+         [ngClass]="{active: cityWeatherData && (cityWeatherData.name === userSettings.favoriteCity)}"
+         (click)="setFavoriteCity(cityWeatherData.name)"
+         title="Make favorite">
+        <i class="fa fa-star" aria-hidden="true"></i>
+    </div>
+</div>
 <div *ngIf="cityWeatherData">
     <div class="main-data">
         <div class="shortcut">
@@ -6,11 +20,11 @@
             </div>
             <div class="city-name">{{cityWeatherData.name}}</div>
         </div>
-        <div class="temperature">{{cityWeatherData.main.temp | temperature:displayModes.temperature}}</div>
+        <div class="temperature">{{cityWeatherData.main.temp | temperature:userSettings.displayModes.temperature}}</div>
     </div>
     <div class="other-data">
         <div class="humidity">{{cityWeatherData.main.humidity}}%</div>
-        <div class="wind">{{cityWeatherData.wind.speed | wind:displayModes.wind}}</div>
-        <div class="pressure">{{cityWeatherData.main.pressure | pressure:displayModes.pressure}}</div>
+        <div class="wind">{{cityWeatherData.wind.speed | wind:userSettings.displayModes.wind}}</div>
+        <div class="pressure">{{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}</div>
     </div>
 </div>

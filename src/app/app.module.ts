@@ -4,7 +4,7 @@ import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import { AppComponent } from './';
+import { AppComponent } from './app.component';
 import { MapComponent } from './map';
 import { WeatherComponent, TemperaturePipe, WindPipe, PressurePipe } from './weather';
 import { WeatherWidgetComponent } from './weather-widget';

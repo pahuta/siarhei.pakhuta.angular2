@@ -1,11 +1,56 @@
 @import "../../colors";
 
 weather-widget {
+  position: relative;
   display: block;
   margin-top: 24px;
   color: $white;
   background: linear-gradient(135deg,  #30617f 0%, #94d4c6 100%);
   text-shadow: 0 1px 2px $medium-gray;
+
+  &:hover {
+    .controls-container {
+      .control {
+        display: flex;
+      }
+    }
+  }
+
+  .controls-container {
+    position: absolute;
+    display: flex;
+    top: 6px;
+    right: 6px;
+    font-size: 18px;
+
+    .control {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:nth-of-type(n+2) {
+        margin-left: 6px;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    .favorite:hover, .favorite.active {
+      display: flex;
+      color: $yellow;
+    }
+
+    .add:hover {
+      color: $lime-green;
+    }
+
+    .delete:hover {
+      color: $fuchsia;
+    }
+  }
 
   .main-data {
     display: flex;

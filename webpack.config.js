@@ -70,9 +70,15 @@ module.exports = {
             allChunks: true
         }),
 
-        new CopyWebpackPlugin([{
-            from: 'src/mock',
-            to: 'mock'
-        }])
+        new CopyWebpackPlugin([
+            {
+                from: 'src/mock',
+                to: 'mock'
+            },
+            {
+                from: 'src/assets',
+                to: 'assets'
+            }
+        ])
     ]
 };

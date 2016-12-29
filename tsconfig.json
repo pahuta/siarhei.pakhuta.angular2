@@ -15,7 +15,8 @@
       "googlemaps",
       "moment",
       "whatwg-fetch",
-      "node"
+      "node",
+      "immutable"
     ]
   }
 }

@@ -1,4 +1,8 @@
-import { WeatherCoords, Main, CityWeather, Wind, Sys } from './'
+import { WeatherCoords } from './weather-coords.model'
+import { Main } from './main.model'
+import { CityWeather } from './city-weather.model'
+import { Wind } from './wind.model'
+import { Sys } from './sys.model'
 
 export class CityWeatherData {
     clouds: {all: number};

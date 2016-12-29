@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Coords, AppOptions } from './shared'
+import { Coords, UserSettings } from './shared'
 
 @Component({
     selector: 'app',
@@ -13,20 +13,20 @@ export class AppComponent implements OnInit {
         lat: 0,
         lng: 0
     };
-    appOptions: AppOptions;
+    userSettings: UserSettings;
     isOpenDisplayModesMenu: boolean = false;
 
-    constructor() {}
-
-    ngOnInit() {
-        this.appOptions = new AppOptions({
+    constructor() {
+        this.userSettings = new UserSettings({
             displayModes: {
                 temperature: 'c',
                 wind: 'km/h',
                 pressure: 'mmHg'
             }
         });
+    }
 
+    ngOnInit() {
         this.currentPositionPromise = new Promise((resolve: Function, reject: Function) => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position: Position) => {
@@ -44,15 +44,15 @@ export class AppComponent implements OnInit {
     setScale(parameterName: string, scale: string) {
         switch (parameterName) {
             case 'temperature': {
-                this.appOptions.displayModes.temperature = scale;
+                this.userSettings = Object.assign(this.userSettings, {displayModes: {temperature: scale}});
             }
                 break;
             case 'wind': {
-                this.appOptions.displayModes.wind = scale;
+                this.userSettings = Object.assign(this.userSettings, {displayModes: {wind: scale}});
             }
                 break;
             case 'pressure': {
-                this.appOptions.displayModes.pressure = scale;
+                this.userSettings = Object.assign(this.userSettings, {displayModes: {pressure: scale}});
             }
                 break;
         }
