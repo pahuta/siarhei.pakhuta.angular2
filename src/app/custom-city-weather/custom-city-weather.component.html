@@ -4,4 +4,8 @@
         <button [disabled]="!cityNameInput.valid" type="button" class="btn btn-default" (click)="getCityWeatherData(cityNameInput.value)">Get weather!</button>
     </span>
 </div>
-<weather-widget [cityWeatherData]="cityName | cityWeather"></weather-widget>
+<weather-widget [cityWeatherData]="cityName | cityWeather"
+                [userSettings]="userSettings"
+                (favoriteCityChange)="favoriteCityChange($event);"
+                [hideControls]="true">
+</weather-widget>

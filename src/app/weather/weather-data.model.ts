@@ -1,4 +1,4 @@
-import { CityWeatherData } from './'
+import { CityWeatherData } from './city-weather-data.model'
 
 export class WeatherData {
     cod: string;

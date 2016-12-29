@@ -4,9 +4,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TemperaturePipe implements PipeTransform {
     transform(temperatureK: number, params: string = 'c.0'): string {
         let convertedTemperature: string;
+        let scale: string;
+        let precision: number;
         let delimiterPosition: number = params.indexOf('.');
-        let scale: string = params.slice(0, delimiterPosition);
-        let precision: number = Number(params.slice(delimiterPosition + 1));
+
+        if (delimiterPosition === -1) {
+            scale = params;
+            precision = 0;
+        } else {
+            scale = params.slice(0, delimiterPosition);
+            precision = Number(params.slice(delimiterPosition + 1));
+        }
 
         switch (scale) {
             case 'k': {

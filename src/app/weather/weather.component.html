@@ -1,6 +1,10 @@
 <loader [ngClass]="{'show-loader': !(data | async)?.list}"></loader>
 <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of (data | async)?.list">
-        <weather-widget [cityWeatherData]="cityWeatherData"></weather-widget>
+        <weather-widget [cityWeatherData]="cityWeatherData"
+                        [userSettings]="userSettings"
+                        (favoriteCityChange)="favoriteCityChange($event);"
+                        [hidden]="userSettings.filter === 'favorite' && cityWeatherData && (cityWeatherData.name !== userSettings.favoriteCity)">
+        </weather-widget>
     </div>
 </div>
