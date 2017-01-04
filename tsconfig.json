@@ -16,7 +16,8 @@
       "moment",
       "whatwg-fetch",
       "node",
-      "immutable"
+      "immutable",
+      "lodash"
     ]
   }
 }

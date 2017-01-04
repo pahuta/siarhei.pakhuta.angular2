@@ -12,6 +12,10 @@ weather-widget {
     .controls-container {
       .control {
         display: flex;
+
+        &.hideControl {
+          display: none;
+        }
       }
     }
   }

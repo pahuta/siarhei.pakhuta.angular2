@@ -11,3 +11,4 @@ export * from './vars';
 export * from './temperature.pipe';
 export * from './wind.pipe';
 export * from './pressure.pipe';
+export * from './filter.pipe';

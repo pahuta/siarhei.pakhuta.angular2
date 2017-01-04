@@ -19,10 +19,6 @@ html, body {
   justify-content: flex-start;
 }
 
-.layout {
-  margin-top: 24px;
-}
-
 app {
   display: block;
   height: 100%;
@@ -87,6 +83,10 @@ main {
       font-weight: normal;
       margin-left: 4px;
     }
+  }
+
+  .container {
+    margin-top: 24px;
   }
 }
 

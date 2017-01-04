@@ -1,7 +1,7 @@
 export class DisplayModes {
-    temperature: string;
-    wind: string;
-    pressure: string;
+    temperature?: string;
+    wind?: string;
+    pressure?: string;
 
     constructor(params: DisplayModes) {
         this.temperature = params.temperature;

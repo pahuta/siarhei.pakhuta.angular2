@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { WeatherData } from './weather-data.model';
 import { VARS } from './vars';
-import { Coords, UserSettings } from '../shared';
+import { Coords, UserSettings, UserSettingsService } from '../shared';
 
 @Component({
     selector: 'weather',
@@ -15,12 +15,15 @@ import { Coords, UserSettings } from '../shared';
 export class WeatherComponent implements OnInit {
     @Input() currentPositionPromise: Promise<Coords>;
     @Input() cityCount: number;
-    @Input() userSettings: UserSettings;
 
     data: Observable<WeatherData>;
     iconUrl: string;
+    userSettings: UserSettings;
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http,
+        private userSettingsService: UserSettingsService
+    ) {
         this.iconUrl = VARS.weatherConfig.icon_url;
         this.cityCount = this.cityCount || VARS.weatherConfig.cityCount;
     }
@@ -30,17 +33,15 @@ export class WeatherComponent implements OnInit {
             .then((coords: Coords) => {
                 this.data = this.getWeatherData(coords);
             });
-    }
 
-    favoriteCityChange($event: {name: string}) {
-        if (this.userSettings.favoriteCity === $event.name) {
-            this.userSettings.favoriteCity = '';
-        } else {
-            this.userSettings.favoriteCity = $event.name;
-        }
+        this.userSettings = this.userSettingsService.getSettings();
 
-
-        this.userSettings = Object.assign({}, this.userSettings);
+        // subscribe on change userSettings. Returning userSettings object is immutable
+        this.userSettingsService.getSettingsObservable().subscribe(
+            (userSettings) => {
+                this.userSettings = userSettings;
+            }
+        );
     }
 
     private getWeatherData(coords: Coords): Observable<WeatherData> {
@@ -48,8 +49,11 @@ export class WeatherComponent implements OnInit {
                                                               &lon=${coords.lng}&cnt=${this.cityCount}
                                                               &appid=${VARS.weatherConfig.api_key}`;
 
-        return this.http.get(url)
+        /*return this.http.get(url)
             .catch(this.getMockWeather.bind(this))
+            .map((response: Response) => response.json() as WeatherData);*/
+
+        return this.getMockWeather()
             .map((response: Response) => response.json() as WeatherData);
 
     }

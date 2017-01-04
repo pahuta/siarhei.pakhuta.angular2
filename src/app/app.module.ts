@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map';
-import { WeatherComponent, TemperaturePipe, WindPipe, PressurePipe } from './weather';
+import { WeatherComponent, TemperaturePipe, WindPipe, PressurePipe, FilterPipe } from './weather';
 import { WeatherWidgetComponent } from './weather-widget';
 import { LoaderComponent } from './loader';
 import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weather';
+import { UserSettingsService } from './shared';
 
 @NgModule({
     imports: [
@@ -30,7 +31,11 @@ import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weath
         TemperaturePipe,
         WindPipe,
         PressurePipe,
-        CityWeatherPipe
+        CityWeatherPipe,
+        FilterPipe
+    ],
+    providers: [
+        UserSettingsService
     ],
     bootstrap: [AppComponent]
 })
