@@ -1,24 +1,31 @@
-import { Component, Input } from '@angular/core';
-import { UserSettings } from '../shared/user-settings.model';
+import { Component, OnInit } from '@angular/core';
+import { UserSettings, UserSettingsService } from '../shared';
 
 @Component({
     selector: 'custom-city-weather',
     template: require('./custom-city-weather.component.html'),
     styles: [require('./custom-city-weather.component.scss').toString()],
 })
-export class CustomCityWeatherComponent {
-    @Input() userSettings: UserSettings;
-
+export class CustomCityWeatherComponent implements OnInit {
     cityName: string;
+    cityNameInput: string;
+    userSettings: UserSettings;
 
-    constructor() {}
+    constructor(private userSettingsService: UserSettingsService) {}
 
-    getCityWeatherData(cityName: string): void {
-        this.cityName = cityName;
+    ngOnInit() {
+        this.userSettings = this.userSettingsService.getSettings();
+
+        // subscribe on change userSettings. Returning userSettings object is immutable
+        this.userSettingsService.getSettingsObservable().subscribe(
+            (userSettings) => {
+                this.userSettings = userSettings;
+            }
+        );
     }
 
-    favoriteCityChange($event: {name: string}) {
-        this.userSettings.favoriteCity = $event.name;
-        this.userSettings = Object.assign({}, this.userSettings);
+    getCityWeatherData(): void {
+        this.cityName = this.cityNameInput;
+        this.cityNameInput = '';
     }
 }

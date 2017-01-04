@@ -1,12 +1,18 @@
-<div class="controls-container" *ngIf="!hideControls">
-    <!--<div class="control add" title="Add to list">
+<div class="controls-container">
+    <div class="control add"
+         [ngClass]="{hideControl: isCityInList(cityWeatherData?.name)}"
+         (click)="addCityToList(cityWeatherData.name)"
+         title="Add to list">
         <i class="fa fa-plus" aria-hidden="true"></i>
     </div>
-    <div class="control delete" title="Remove from list">
+    <div class="control delete"
+         [ngClass]="{hideControl: !isCityInList(cityWeatherData?.name)}"
+         (click)="removeCityFromList(cityWeatherData.name)"
+         title="Remove from list">
         <i class="fa fa-minus" aria-hidden="true"></i>
-    </div>-->
+    </div>
     <div class="control favorite"
-         [ngClass]="{active: cityWeatherData && (cityWeatherData.name === userSettings.favoriteCity)}"
+         [ngClass]="{active: cityWeatherData?.name === userSettings.favoriteCity}"
          (click)="setFavoriteCity(cityWeatherData.name)"
          title="Make favorite">
         <i class="fa fa-star" aria-hidden="true"></i>
