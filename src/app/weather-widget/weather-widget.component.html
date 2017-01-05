@@ -1,4 +1,4 @@
-<div class="controls-container">
+<div class="controls-container" *ngIf="!hideControls">
     <div class="control add"
          [ngClass]="{hideControl: isCityInList(cityWeatherData?.name)}"
          (click)="addCityToList(cityWeatherData.name)"
