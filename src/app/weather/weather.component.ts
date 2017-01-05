@@ -19,6 +19,7 @@ export class WeatherComponent implements OnInit {
     data: Observable<WeatherData>;
     iconUrl: string;
     userSettings: UserSettings;
+    private currentCoords: Coords;
 
     constructor(
         private http: Http,
@@ -31,7 +32,9 @@ export class WeatherComponent implements OnInit {
     ngOnInit() {
         this.currentPositionPromise
             .then((coords: Coords) => {
-                this.data = this.getWeatherData(coords);
+                this.currentCoords = coords;
+                this.updateWeatherData();
+                setInterval(this.updateWeatherData.bind(this), 5000);
             });
 
         this.userSettings = this.userSettingsService.getSettings();
@@ -60,5 +63,9 @@ export class WeatherComponent implements OnInit {
 
     private getMockWeather(): Observable<Response> {
         return this.http.get('./mock/mock-weather.json');
+    }
+
+    private updateWeatherData() {
+        this.data = this.getWeatherData(this.currentCoords);
     }
 }
