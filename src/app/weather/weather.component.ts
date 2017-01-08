@@ -34,7 +34,7 @@ export class WeatherComponent implements OnInit {
             .then((coords: Coords) => {
                 this.currentCoords = coords;
                 this.updateWeatherData();
-                setInterval(this.updateWeatherData.bind(this), 5000);
+                // setInterval(this.updateWeatherData.bind(this), 5000);
             });
 
         this.userSettings = this.userSettingsService.getSettings();

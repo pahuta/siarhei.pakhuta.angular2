@@ -1,10 +1,13 @@
 @import "../../colors";
 
+$temperature-gradient-width: 10px;
+
 weather-widget {
   position: relative;
   display: block;
   margin-top: 24px;
   color: $white;
+  background: url('../../assets/img/pattern_large.png');
   background: linear-gradient(135deg,  #30617f 0%, #94d4c6 100%);
   text-shadow: 0 1px 2px $medium-gray;
 
@@ -24,7 +27,7 @@ weather-widget {
     position: absolute;
     display: flex;
     top: 6px;
-    right: 6px;
+    right: $temperature-gradient-width + 6px;
     font-size: 18px;
 
     .control {
@@ -58,6 +61,7 @@ weather-widget {
 
   .main-data {
     display: flex;
+    position: relative;
 
     .shortcut {
       display: flex;
@@ -107,5 +111,14 @@ weather-widget {
     padding: 60px 0;
     background-color: rgba(255, 255, 255, 0.4);
     text-align: center;
+  }
+  
+  .temperature-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgb(31, 111, 196) 0%, rgb(148, 212, 198) 30%, rgb(255, 255, 255) 50%, rgb(255, 225, 123) 70%, rgb(219, 4, 0) 100%);
   }
 }

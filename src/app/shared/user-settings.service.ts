@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { UserSettings } from './user-settings.model';
 import * as _ from 'lodash';
@@ -8,8 +7,7 @@ import * as _ from 'lodash';
 @Injectable()
 export class UserSettingsService {
     private userSettings: UserSettings;
-    private userSettingsObservable: Observable<UserSettings>;
-    private userSettingsObserver: Observer<UserSettings>;
+    private userSettingsObservable: BehaviorSubject<UserSettings>;
 
     constructor(private ngZone: NgZone) {
         this.userSettings = new UserSettings({
@@ -20,9 +18,7 @@ export class UserSettingsService {
             }
         });
 
-        this.userSettingsObservable =  new Observable((observer: Observer<UserSettings>) => {
-            this.userSettingsObserver = observer;
-        });
+        this.userSettingsObservable =  new BehaviorSubject(this.userSettings);
 
         // profiling change detection
         this.ngZone.onUnstable.subscribe(() => {
@@ -41,7 +37,7 @@ export class UserSettingsService {
     setSettings(path: string, value: string | {}) {
         // link on object userSettings saved
         this.userSettings = _.set(this.userSettings, path, value);
-        this.userSettingsObserver.next(_.clone(this.userSettings));
+        this.userSettingsObservable.next(_.clone(this.userSettings));
     }
 
     getSettingsObservable() {
