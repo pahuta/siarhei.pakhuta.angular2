@@ -11,6 +11,7 @@ import { WeatherWidgetComponent, TemperatureGradientPointerDirective } from './w
 import { LoaderComponent } from './loader';
 import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weather';
 import { UserSettingsService } from './shared';
+import { WindWidgetComponent, WindDirectionDirective } from './weather-widget/wind-widget';
 
 @NgModule({
     imports: [
@@ -28,12 +29,14 @@ import { UserSettingsService } from './shared';
         WeatherWidgetComponent,
         LoaderComponent,
         CustomCityWeatherComponent,
+        WindWidgetComponent,
         TemperaturePipe,
         WindPipe,
         PressurePipe,
         CityWeatherPipe,
         FilterPipe,
-        TemperatureGradientPointerDirective
+        TemperatureGradientPointerDirective,
+        WindDirectionDirective
     ],
     providers: [
         UserSettingsService

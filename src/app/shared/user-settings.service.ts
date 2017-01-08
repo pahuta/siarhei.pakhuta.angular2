@@ -13,7 +13,7 @@ export class UserSettingsService {
         this.userSettings = new UserSettings({
             displayModes: {
                 temperature: 'c',
-                wind: 'km/h',
+                wind: 'm/s',
                 pressure: 'mmHg'
             }
         });

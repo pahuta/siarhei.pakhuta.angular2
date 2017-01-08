@@ -1,0 +1,6 @@
+<div class="wind-direction-icon" [windDirection]="windData.deg">
+    <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+</div>
+<div class="wind-value">
+    <span>{{windData.speed | wind:userSettings.displayModes.wind}}</span>
+</div>
