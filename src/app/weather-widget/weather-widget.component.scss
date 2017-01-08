@@ -7,7 +7,6 @@ weather-widget {
   display: block;
   margin-top: 24px;
   color: $white;
-  background: url('../../assets/img/pattern_large.png');
   background: linear-gradient(135deg,  #30617f 0%, #94d4c6 100%);
   text-shadow: 0 1px 2px $medium-gray;
 
@@ -86,6 +85,24 @@ weather-widget {
       font-size: 32px;
       font-weight: bold;
     }
+
+    .temperature-gradient {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 100%;
+      background: linear-gradient(to top, rgb(31, 111, 196) 0%, rgb(148, 212, 198) 30%, rgb(255, 255, 255) 50%, rgb(255, 225, 123) 70%, rgb(219, 4, 0) 100%);
+
+      .pointer {
+        position: absolute;
+        right: 7px;
+        transform: translateY(-50%);
+        border: solid transparent;
+        border-width: 5px 0 5px 10px;
+        border-left-color: $white;
+      }
+    }
   }
 
   .other-data {
@@ -111,14 +128,5 @@ weather-widget {
     padding: 60px 0;
     background-color: rgba(255, 255, 255, 0.4);
     text-align: center;
-  }
-  
-  .temperature-gradient {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 10px;
-    height: 100%;
-    background: linear-gradient(to bottom, rgb(31, 111, 196) 0%, rgb(148, 212, 198) 30%, rgb(255, 255, 255) 50%, rgb(255, 225, 123) 70%, rgb(219, 4, 0) 100%);
   }
 }

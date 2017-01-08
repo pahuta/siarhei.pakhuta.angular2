@@ -17,7 +17,6 @@ export class WeatherComponent implements OnInit {
     @Input() cityCount: number;
 
     data: Observable<WeatherData>;
-    iconUrl: string;
     userSettings: UserSettings;
     private currentCoords: Coords;
 
@@ -25,7 +24,6 @@ export class WeatherComponent implements OnInit {
         private http: Http,
         private userSettingsService: UserSettingsService
     ) {
-        this.iconUrl = VARS.weatherConfig.icon_url;
         this.cityCount = this.cityCount || VARS.weatherConfig.cityCount;
     }
 

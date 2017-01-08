@@ -27,7 +27,9 @@
             <div class="city-name">{{cityWeatherData.name}}</div>
         </div>
         <div class="temperature">{{cityWeatherData.main.temp | temperature:userSettings.displayModes.temperature}}</div>
-        <div class="temperature-gradient"></div>
+        <div class="temperature-gradient">
+            <div class="pointer" [temperatureGradientPointer]="cityWeatherData.main.temp"></div>
+        </div>
     </div>
     <div class="other-data">
         <div class="humidity">{{cityWeatherData.main.humidity}}%</div>
