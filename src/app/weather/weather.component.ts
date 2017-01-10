@@ -11,6 +11,7 @@ import { Coords, UserSettings, UserSettingsService } from '../shared';
 @Component({
     selector: 'weather',
     template: require('./weather.component.html'),
+    styles: [require('./weather.component.scss').toString()]
 })
 export class WeatherComponent implements OnInit {
     @Input() currentPositionPromise: Promise<Coords>;
@@ -18,7 +19,9 @@ export class WeatherComponent implements OnInit {
 
     data: Observable<WeatherData>;
     userSettings: UserSettings;
+    isOpenFiltersMenu: boolean = false;
     private currentCoords: Coords;
+    private regularlyUpdateWeathersIntervalId: number;
 
     constructor(
         private http: Http,
@@ -32,28 +35,45 @@ export class WeatherComponent implements OnInit {
             .then((coords: Coords) => {
                 this.currentCoords = coords;
                 this.updateWeatherData();
-                // setInterval(this.updateWeatherData.bind(this), 5000);
             });
-
-        this.userSettings = this.userSettingsService.getSettings();
 
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
             (userSettings) => {
                 this.userSettings = userSettings;
+
+                // set/unset setInterval for regularly update weathers
+                if (userSettings.isRegularlyUpdateWeathers) {
+                    this.regularlyUpdateWeathersIntervalId = setInterval(this.updateWeatherData.bind(this), 5000);
+                } else if (this.regularlyUpdateWeathersIntervalId) {
+                    clearInterval(this.regularlyUpdateWeathersIntervalId);
+                }
             }
         );
+    }
+
+    setFilter(filterName: string) {
+        this.userSettingsService.setSettings({'filter': filterName});
+        this.isOpenFiltersMenu = false;
+    }
+
+    isCityListEmpty(): boolean {
+        return !Object.keys(this.userSettings.cityList).length;
+    }
+
+    setRegularlyUpdateWeathers(newValue: boolean) {
+        this.userSettingsService.setSettings({'isRegularlyUpdateWeathers': newValue});
     }
 
     private getWeatherData(coords: Coords): Observable<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${coords.lat}&lon=${coords.lng}&cnt=${this.cityCount}&appid=${VARS.weatherConfig.api_key}`;
 
-        // return this.http.get(url)
-        //     .catch(this.getMockWeather.bind(this))
-        //     .map((response: Response) => response.json() as WeatherData);
-
-        return this.getMockWeather()
+        return this.http.get(url)
+            .catch(this.getMockWeather.bind(this))
             .map((response: Response) => response.json() as WeatherData);
+
+        // return this.getMockWeather()
+        //     .map((response: Response) => response.json() as WeatherData);
 
     }
 

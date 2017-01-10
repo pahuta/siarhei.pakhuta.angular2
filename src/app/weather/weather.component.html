@@ -1,6 +1,42 @@
 <loader [ngClass]="{'show-loader': !(data | async)?.list}"></loader>
+<div class="filters-container" [hidden]="!(data | async)?.list">
+    <div class="filters">
+        <div class="filter-container">
+            <div class="btn-group" [ngClass]="{open: isOpenFiltersMenu}">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        (click)="isOpenFiltersMenu = !isOpenFiltersMenu">
+                    <i class="fa fa-filter" aria-hidden="true"></i><span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li [ngClass]="{selected: userSettings.filter === 'favorite', disabled: !userSettings.favoriteCity}">
+                        <a (click)="setFilter('favorite')">Favorite</a>
+                    </li>
+                    <li [ngClass]="{selected: userSettings.filter === 'list', disabled: isCityListEmpty()}">
+                        <a (click)="setFilter('list')">List</a>
+                    </li>
+                    <li [ngClass]="{selected: userSettings.filter === 'noFilter'}">
+                        <a (click)="setFilter('noFilter')">Turn off</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="filter-container">
+            <input id="regularlyUpdateWeathers"
+                   name="regularlyUpdateWeathers"
+                   type="checkbox"
+                   #regularlyUpdateWeathers
+                   [ngModel]="userSettings.isRegularlyUpdateWeathers"
+                   (change)="setRegularlyUpdateWeathers(regularlyUpdateWeathers.checked)">
+            <label for="regularlyUpdateWeathers">update every 5 sec</label>
+        </div>
+    </div>
+</div>
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of (data | async)?.list | filter:userSettings.filter">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of (data | async)?.list | filter:userSettings">
         <weather-widget [cityWeatherData]="cityWeatherData"
                         [userSettings]="userSettings">
         </weather-widget>

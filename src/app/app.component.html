@@ -30,48 +30,8 @@
             </div>
         </div>
         <div class="container">
-            <div class="col-lg-2 col-md-3 col-sm-5 col-xs-6 filter">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Filter</div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <div>
-                                <input id="favorite"
-                                       name="filter"
-                                       type="radio"
-                                       value="favorite"
-                                       #filterFavorite
-                                       [ngModel]="userSettings.filter"
-                                       (change)="setFilter(filterFavorite.value)"
-                                       [disabled]="!userSettings.favoriteCity">
-                                <label for="favorite">Favorite</label>
-                            </div>
-                            <div>
-                                <input id="list"
-                                       name="filter"
-                                       type="radio"
-                                       value="list"
-                                       #filterList
-                                       [ngModel]="userSettings.filter"
-                                       (change)="setFilter(filterList.value)"
-                                       [disabled]="isCityListEmpty()">
-                                <label for="list">List</label>
-                            </div>
-                            <div>
-                                <input id="noFilter"
-                                       name="filter"
-                                       type="radio"
-                                       value="noFilter"
-                                       #filterNoFilter
-                                       [ngModel]="userSettings.filter"
-                                       (change)="setFilter(filterNoFilter.value)">
-                                <label for="noFilter">Turn off</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6">
+
+            <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
                 <div class="row">
                     <custom-city-weather></custom-city-weather>
                 </div>

@@ -11,7 +11,7 @@ import { WeatherWidgetComponent, TemperatureGradientPointerDirective, IconSwitch
          IconSwitchCaseDirective, IconSwitchDefaultDirective } from './weather-widget';
 import { LoaderComponent } from './loader';
 import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weather';
-import { UserSettingsService } from './shared';
+import { UserSettingsService, StorageService } from './shared';
 import { WindWidgetComponent, WindDirectionDirective } from './weather-widget/wind-widget';
 
 @NgModule({
@@ -43,7 +43,8 @@ import { WindWidgetComponent, WindDirectionDirective } from './weather-widget/wi
         IconSwitchDefaultDirective
     ],
     providers: [
-        UserSettingsService
+        UserSettingsService,
+        StorageService
     ],
     bootstrap: [AppComponent]
 })

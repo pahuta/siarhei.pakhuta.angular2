@@ -31,8 +31,6 @@ export class AppComponent implements OnInit {
             }
         });
 
-        this.userSettings = this.userSettingsService.getSettings();
-
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
             (userSettings) => {
@@ -44,27 +42,19 @@ export class AppComponent implements OnInit {
     setScale(parameterName: string, scale: string) {
         switch (parameterName) {
             case 'temperature': {
-                this.userSettingsService.setSettings('displayModes.temperature', scale);
+                this.userSettingsService.setSettings({'displayModes.temperature': scale});
             }
                 break;
             case 'wind': {
-                this.userSettingsService.setSettings('displayModes.wind', scale);
+                this.userSettingsService.setSettings({'displayModes.wind': scale});
             }
                 break;
             case 'pressure': {
-                this.userSettingsService.setSettings('displayModes.pressure', scale);
+                this.userSettingsService.setSettings({'displayModes.pressure': scale});
             }
                 break;
         }
 
         this.isOpenDisplayModesMenu = false;
-    }
-
-    setFilter(filterName: string) {
-        this.userSettingsService.setSettings('filter', filterName);
-    }
-
-    isCityListEmpty(): boolean {
-        return !Object.keys(this.userSettings.cityList).length;
     }
 }

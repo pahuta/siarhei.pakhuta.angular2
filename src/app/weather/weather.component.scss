@@ -1,0 +1,16 @@
+weather {
+  display: block;
+
+  .filters {
+    display: flex;
+    align-items: center;
+
+    .filter-container {
+      display: flex;
+
+      &:nth-child(n+2) {
+        margin-left: 12px;
+      }
+    }
+  }
+}

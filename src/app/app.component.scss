@@ -8,7 +8,6 @@ $display-modes-margin-right: 24px;
 
 html, body {
   height: 100%;
-  font-size: 16px;
   color: $dark-gray;
 }
 
@@ -33,12 +32,12 @@ header {
   align-items: center;
 
   .display-modes {
-    cursor: pointer;
 
     .toogle-menu-btn {
       font-size: 24px;
       margin-right: $display-modes-margin-right;
       color: $light-gray;
+      cursor: pointer;
 
       &:hover {
         color: $white;
@@ -64,12 +63,6 @@ header {
             }
           }
         }
-
-        .selected {
-          a {
-            background-color: #F4F4F4;
-          }
-        }
       }
     }
   }
@@ -77,13 +70,6 @@ header {
 
 main {
   flex-grow: 2;
-
-  .filter {
-    label {
-      font-weight: normal;
-      margin-left: 4px;
-    }
-  }
 
   .container {
     margin-top: 24px;
@@ -95,4 +81,24 @@ footer {
   margin-top: 24px;
   flex-shrink: 0;
   background-color: $dark-gray;
+}
+
+label {
+  font-weight: normal;
+}
+
+.btn-group {
+  .dropdown-menu {
+    cursor: pointer;
+
+    .selected {
+      a {
+        background-color: #F4F4F4;
+      }
+    }
+  }
+
+  .btn {
+    color: $medium-gray;
+  }
 }
