@@ -21,16 +21,37 @@
 <div *ngIf="cityWeatherData">
     <div class="main-data">
         <div class="shortcut">
-            <div class="weather-icon">
-                <img class="icon" src="{{iconUrl + cityWeatherData.weather[0].icon}}.png">
+            <div class="weather-icon" [iconSwitch]="cityWeatherData.weather[0].icon">
+                <img class="icon" src="{{iconUrl}}01d.png" *iconSwitchCase="'01d'">
+                <img class="icon" src="{{iconUrl}}01n.png" *iconSwitchCase="'01n'">
+                <img class="icon" src="{{iconUrl}}02d.png" *iconSwitchCase="'02d'">
+                <img class="icon" src="{{iconUrl}}02n.png" *iconSwitchCase="'02n'">
+                <img class="icon" src="{{iconUrl}}03d.png" *iconSwitchCase="'03d'">
+                <img class="icon" src="{{iconUrl}}03n.png" *iconSwitchCase="'03n'">
+                <img class="icon" src="{{iconUrl}}04d.png" *iconSwitchCase="'04d'">
+                <img class="icon" src="{{iconUrl}}04n.png" *iconSwitchCase="'04n'">
+                <img class="icon" src="{{iconUrl}}09d.png" *iconSwitchCase="'09d'">
+                <img class="icon" src="{{iconUrl}}09n.png" *iconSwitchCase="'09n'">
+                <img class="icon" src="{{iconUrl}}10d.png" *iconSwitchCase="'10d'">
+                <img class="icon" src="{{iconUrl}}10n.png" *iconSwitchCase="'10n'">
+                <img class="icon" src="{{iconUrl}}11d.png" *iconSwitchCase="'11d'">
+                <img class="icon" src="{{iconUrl}}11n.png" *iconSwitchCase="'11n'">
+                <img class="icon" src="{{iconUrl}}13d.png" *iconSwitchCase="'13d'">
+                <img class="icon" src="{{iconUrl}}13n.png" *iconSwitchCase="'13n'">
+                <img class="icon" src="{{iconUrl}}50d.png" *iconSwitchCase="'50d'">
+                <img class="icon" src="{{iconUrl}}50n.png" *iconSwitchCase="'50n'">
+                <div class="no-icon" *iconSwitchDefault>No icon</div>
             </div>
             <div class="city-name">{{cityWeatherData.name}}</div>
         </div>
         <div class="temperature">{{cityWeatherData.main.temp | temperature:userSettings.displayModes.temperature}}</div>
+        <div class="temperature-gradient">
+            <div class="pointer" [temperatureGradientPointer]="cityWeatherData.main.temp"></div>
+        </div>
     </div>
-    <div class="other-data">
-        <div class="humidity">{{cityWeatherData.main.humidity}}%</div>
-        <div class="wind">{{cityWeatherData.wind.speed | wind:userSettings.displayModes.wind}}</div>
-        <div class="pressure">{{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}</div>
+    <div class="other-data-container">
+        <div class="other-data humidity">{{cityWeatherData.main.humidity}}%</div>
+        <wind-widget class="other-data" [windData]="cityWeatherData.wind" [userSettings]="userSettings"></wind-widget>
+        <div class="other-data pressure">{{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}</div>
     </div>
 </div>

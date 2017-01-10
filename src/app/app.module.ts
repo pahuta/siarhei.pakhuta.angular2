@@ -7,10 +7,12 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map';
 import { WeatherComponent, TemperaturePipe, WindPipe, PressurePipe, FilterPipe } from './weather';
-import { WeatherWidgetComponent } from './weather-widget';
+import { WeatherWidgetComponent, TemperatureGradientPointerDirective, IconSwitchDirective,
+         IconSwitchCaseDirective, IconSwitchDefaultDirective } from './weather-widget';
 import { LoaderComponent } from './loader';
 import { CustomCityWeatherComponent, CityWeatherPipe } from './custom-city-weather';
-import { UserSettingsService } from './shared';
+import { UserSettingsService, StorageService } from './shared';
+import { WindWidgetComponent, WindDirectionDirective } from './weather-widget/wind-widget';
 
 @NgModule({
     imports: [
@@ -28,14 +30,21 @@ import { UserSettingsService } from './shared';
         WeatherWidgetComponent,
         LoaderComponent,
         CustomCityWeatherComponent,
+        WindWidgetComponent,
         TemperaturePipe,
         WindPipe,
         PressurePipe,
         CityWeatherPipe,
-        FilterPipe
+        FilterPipe,
+        TemperatureGradientPointerDirective,
+        WindDirectionDirective,
+        IconSwitchDirective,
+        IconSwitchCaseDirective,
+        IconSwitchDefaultDirective
     ],
     providers: [
-        UserSettingsService
+        UserSettingsService,
+        StorageService
     ],
     bootstrap: [AppComponent]
 })

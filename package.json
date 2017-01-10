@@ -21,12 +21,6 @@
     "url": "https://github.com/pakhuta/siarhei.pakhuta.angular2/issues"
   },
   "homepage": "https://github.com/pakhuta/siarhei.pakhuta.angular2#readme",
-  "devDependencies": {
-    "node-sass": "4.0.0",
-    "raw-loader": "0.5.1",
-    "sass-loader": "4.1.0",
-    "webpack-dev-server": "1.16.2"
-  },
   "dependencies": {
     "@angular/common": "2.2.4",
     "@angular/compiler": "2.2.4",
@@ -49,14 +43,16 @@
     "css-loader": "0.26.0",
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.9.0",
     "html-loader": "0.4.4",
     "html-webpack-plugin": "2.24.1",
-    "immutable": "3.8.1",
     "lodash": "4.17.4",
     "moment": "2.17.1",
+    "node-sass": "4.0.0",
+    "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.8",
-    "resolve-url-loader": "1.6.0",
     "rxjs": "5.0.0-rc.4",
+    "sass-loader": "4.1.0",
     "style-loader": "0.13.1",
     "systemjs": "0.19.41",
     "ts-loader": "1.2.2",
@@ -64,6 +60,7 @@
     "tslint-loader": "3.2.0",
     "typescript": "2.0.10",
     "webpack": "1.13.3",
+    "webpack-dev-server": "1.16.2",
     "zone.js": "0.7.2"
   }
 }

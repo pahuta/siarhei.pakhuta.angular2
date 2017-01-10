@@ -14,8 +14,6 @@ export class CustomCityWeatherComponent implements OnInit {
     constructor(private userSettingsService: UserSettingsService) {}
 
     ngOnInit() {
-        this.userSettings = this.userSettingsService.getSettings();
-
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
             (userSettings) => {

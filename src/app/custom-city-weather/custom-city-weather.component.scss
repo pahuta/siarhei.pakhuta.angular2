@@ -1,6 +1,10 @@
 custom-city-weather {
   display: block;
 
+  .input-group {
+    width: 100%;
+  }
+
   .custom-city-form {
     display: flex;
   }

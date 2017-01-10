@@ -1,28 +1,22 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { UserSettings } from './user-settings.model';
 import * as _ from 'lodash';
+import { IUserSettingsParams } from './user-settings-params.model';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class UserSettingsService {
     private userSettings: UserSettings;
-    private userSettingsObservable: Observable<UserSettings>;
-    private userSettingsObserver: Observer<UserSettings>;
+    private userSettingsObservable: BehaviorSubject<UserSettings>;
 
-    constructor(private ngZone: NgZone) {
-        this.userSettings = new UserSettings({
-            displayModes: {
-                temperature: 'c',
-                wind: 'km/h',
-                pressure: 'mmHg'
-            }
-        });
-
-        this.userSettingsObservable =  new Observable((observer: Observer<UserSettings>) => {
-            this.userSettingsObserver = observer;
-        });
+    constructor(
+        private ngZone: NgZone,
+        private storageService: StorageService
+    ) {
+        this.userSettings = this.storageService.loadUserSettings();
+        this.userSettingsObservable =  new BehaviorSubject(this.userSettings);
 
         // profiling change detection
         this.ngZone.onUnstable.subscribe(() => {
@@ -38,10 +32,13 @@ export class UserSettingsService {
         return this.userSettings;
     }
 
-    setSettings(path: string, value: string | {}) {
+    setSettings(userSettingsParams: IUserSettingsParams) {
         // link on object userSettings saved
-        this.userSettings = _.set(this.userSettings, path, value);
-        this.userSettingsObserver.next(_.clone(this.userSettings));
+        _.forEach(userSettingsParams, (value, path) => {
+            this.userSettings = _.set(this.userSettings, path, value);
+        });
+        this.storageService.saveUserSettings(this.userSettings);
+        this.userSettingsObservable.next(_.clone(this.userSettings));
     }
 
     getSettingsObservable() {

@@ -9,6 +9,7 @@ module.exports = {
 
     output: {
         path: __dirname + '/dist',
+        publicPath: '/',
         filename: '[name].js',
         library: '[name]'
     },
@@ -28,7 +29,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
+                loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
             },
             {
                 test: /\.ts$/,
@@ -37,6 +38,10 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'html-loader'
+            },
+            {
+                test: /\.(jpg|png)$/,
+                loader: 'file?name=[path][name].[ext]'
             }
         ]
     },

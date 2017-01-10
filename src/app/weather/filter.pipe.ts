@@ -1,18 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { CityWeatherData } from './city-weather-data.model';
-import { UserSettingsService, UserSettings } from '../shared';
+import { UserSettings } from '../shared';
 import * as _ from 'lodash';
 
 @Pipe({name: 'filter'})
 export class FilterPipe implements PipeTransform {
-    constructor(private userSettingsService: UserSettingsService) {}
+    constructor() {}
 
-    transform(citiesWeatherData: CityWeatherData[], filterBy: string): CityWeatherData[] {
+    transform(citiesWeatherData: CityWeatherData[], userSettings: UserSettings): CityWeatherData[] {
         let filteredCityWeatherData: CityWeatherData[];
-        let userSettings: UserSettings = this.userSettingsService.getSettings();
 
-        switch (filterBy) {
+        switch (userSettings.filter) {
             case 'favorite': {
                 filteredCityWeatherData = _.filter(citiesWeatherData, (cityWeatherData: CityWeatherData) => {
                     return cityWeatherData.name === userSettings.favoriteCity;
