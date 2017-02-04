@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
             }
         );
 
-        this.task5();
+        this.task6();
     }
 
     setScale(parameterName: string, scale: string) {
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
         this.isOpenDisplayModesMenu = false;
     }
 
-    task5() {
+    task6() {
         let $source = Observable.interval(50)
             .take(10)
             .flatMap((x: number): Observable<number> => {
