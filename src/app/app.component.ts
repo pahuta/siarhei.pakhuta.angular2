@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Coords, UserSettingsService, UserSettings } from './shared'
+import { Observable, Observer, Scheduler } from 'rxjs';
 
 @Component({
     selector: 'app',
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit {
                 this.userSettings = userSettings;
             }
         );
+
+        this.task6();
     }
 
     setScale(parameterName: string, scale: string) {
@@ -56,5 +59,50 @@ export class AppComponent implements OnInit {
         }
 
         this.isOpenDisplayModesMenu = false;
+    }
+
+    task6() {
+        let $source = Observable.interval(50)
+            .take(10)
+            .flatMap((x: number): Observable<number> => {
+                if (x > 5) {
+                    return Observable.throw(new Error('More than 5'));
+                }
+                return Observable.timer(200).map(() => x);
+            })
+            .retry(3)
+            .take(1);
+
+        let observer = {
+            next: (value: number) => {
+                console.log(value);
+            },
+            error: () => {},
+            complete: () => {
+                console.log('COMPLITED and unsubscribed');
+                subscription.unsubscribe();
+            }
+        };
+
+        let subscription = $source.subscribe(observer);
+
+
+        // Schedulers
+        let $sourceHeavyProcess = Observable.create((observerHeavyProcess: Observer<number>) => {
+            let tempArray: number[] = [];
+            for (let i = 0; i < 999; i++) {
+                tempArray.unshift(Math.round(Math.random() * 10));
+            }
+            observerHeavyProcess.next(tempArray.length);
+            observerHeavyProcess.complete();
+        }).observeOn(Scheduler.asap);
+
+        console.log('before HeavyProcess');
+        $sourceHeavyProcess.subscribe(
+            (arrayLength: number) => {
+                console.log('Heavy Process Done. Array length', arrayLength);
+            }
+        );
+        console.log('after HeavyProcess');
     }
 }

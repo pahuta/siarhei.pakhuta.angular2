@@ -62,14 +62,14 @@ export class WeatherComponent implements OnInit {
     }
 
     setRegularlyUpdateWeathers(newValue: boolean) {
-        this.userSettingsService.setSettings({'isRegularlyUpdateWeathers': newValue});
+        this.userSettingsService.setProfilingMode(newValue);
     }
 
     private getWeatherData(coords: Coords): Observable<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${coords.lat}&lon=${coords.lng}&cnt=${this.cityCount}&appid=${VARS.weatherConfig.api_key}`;
 
         return this.http.get(url)
-            .catch(this.getMockWeather.bind(this))
+            .catch(err => this.getMockWeather.bind(this))
             .map((response: Response) => response.json() as WeatherData);
 
         // return this.getMockWeather()

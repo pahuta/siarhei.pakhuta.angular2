@@ -6,4 +6,4 @@ $ npm run server                          -- run dev server (http://localhost:30
 $ npm run build                           -- build project
 ```
 
-Visit me on[https://siarhei-pakhuta-angular2.herokuapp.com/](https://siarhei-pakhuta-angular2.herokuapp.com/)
+Visit me on [https://siarhei-pakhuta-angular2.herokuapp.com/](https://siarhei-pakhuta-angular2.herokuapp.com/)
