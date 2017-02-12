@@ -7,14 +7,12 @@ import { IconSwitchDirective } from './icon-switch.directive';
 import { IconSwitchCaseDirective } from './icon-switch-case.directive';
 import { IconSwitchDefaultDirective } from './icon-switch-default.directive';
 import { WindWidgetComponent, WindDirectionDirective } from './wind-widget';
-import { CoreModule } from '../core';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
         CommonModule,
-        CoreModule,
-        SharedModule,
+        SharedModule
     ],
     declarations: [
         WeatherWidgetComponent,

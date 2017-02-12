@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { CustomCityWeatherComponent } from './custom-city-weather.component';
 import { CityWeatherPipe } from './city-weather.pipe';
 import { WeatherWidgetModule } from '../weather-widget';
-import { CoreModule } from '../core';
+import { SharedModule } from '../shared';
 
 @NgModule({
     imports: [
-        CoreModule,
+        SharedModule,
         WeatherWidgetModule
     ],
     declarations: [

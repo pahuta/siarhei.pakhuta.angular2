@@ -3,9 +3,16 @@ import { NgModule } from '@angular/core';
 import { PressurePipe } from './pressure.pipe';
 import { TemperaturePipe } from './temperature.pipe';
 import { WindPipe } from './wind.pipe';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { LoaderModule } from '../loader';
 
 @NgModule({
-    imports: [],
+    imports: [
+        FormsModule,
+        HttpModule,
+        LoaderModule
+    ],
     declarations: [
         PressurePipe,
         TemperaturePipe,
@@ -14,7 +21,10 @@ import { WindPipe } from './wind.pipe';
     exports: [
         PressurePipe,
         TemperaturePipe,
-        WindPipe
+        WindPipe,
+        FormsModule,
+        HttpModule,
+        LoaderModule
     ],
     providers: []
 })
