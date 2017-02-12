@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Coords, UserSettingsService, UserSettings } from './shared'
+import { Coords, UserSettings } from './shared'
+import { UserSettingsService } from './core'
 import { Observable, Observer, Scheduler } from 'rxjs';
 
 @Component({

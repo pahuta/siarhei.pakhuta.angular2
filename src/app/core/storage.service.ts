@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { UserSettings } from './user-settings.model';
+import { UserSettings } from '../shared';
 
 @Injectable()
 export class StorageService {

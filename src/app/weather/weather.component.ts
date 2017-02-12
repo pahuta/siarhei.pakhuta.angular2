@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+
+import { UserSettingsService } from '../core';
 import { WeatherData } from './weather-data.model';
-import { VARS } from './vars';
-import { Coords, UserSettings, UserSettingsService } from '../shared';
+import { Coords, UserSettings, VARS } from '../shared';
 
 @Component({
     selector: 'weather',
@@ -68,12 +69,12 @@ export class WeatherComponent implements OnInit {
     private getWeatherData(coords: Coords): Observable<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${coords.lat}&lon=${coords.lng}&cnt=${this.cityCount}&appid=${VARS.weatherConfig.api_key}`;
 
-        return this.http.get(url)
-            .catch(err => this.getMockWeather.bind(this))
-            .map((response: Response) => response.json() as WeatherData);
-
-        // return this.getMockWeather()
+        // return this.http.get(url)
+        //     .catch(err => this.getMockWeather.bind(this))
         //     .map((response: Response) => response.json() as WeatherData);
+
+        return this.getMockWeather()
+            .map((response: Response) => response.json() as WeatherData);
 
     }
 

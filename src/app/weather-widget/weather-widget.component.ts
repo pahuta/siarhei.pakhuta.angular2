@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
-import { CityWeatherData, VARS } from '../weather';
-import { UserSettings, UserSettingsService } from '../shared';
+import { UserSettings, CityWeatherData, VARS } from '../shared';
+import { UserSettingsService } from '../core';
 
 @Component({
     selector: 'weather-widget',

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import * as moment from 'moment';
-import { CityWeatherData, VARS } from '../weather';
+import { VARS, CityWeatherData } from '../shared';
 
 @Pipe({name: 'cityWeather', pure: false})
 export class CityWeatherPipe implements PipeTransform {

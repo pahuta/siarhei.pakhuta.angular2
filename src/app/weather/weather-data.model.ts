@@ -1,4 +1,4 @@
-import { CityWeatherData } from './city-weather-data.model'
+import { CityWeatherData } from '../shared'
 
 export class WeatherData {
     cod: string;

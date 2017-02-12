@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserSettings, UserSettingsService } from '../shared';
+
+import { UserSettingsService } from '../core';
+import { UserSettings } from '../shared';
 
 @Component({
     selector: 'custom-city-weather',

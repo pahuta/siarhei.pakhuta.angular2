@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Wind } from '../../weather/wind.model';
-import { UserSettings } from '../../shared';
+import { UserSettings, Wind } from '../../shared';
 
 @Component({
     selector: 'wind-widget',

@@ -1,9 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
-import { UserSettings } from './user-settings.model';
+import { UserSettings } from '../shared';
 import * as _ from 'lodash';
-import { IUserSettingsParams } from './user-settings-params.model';
+import { IUserSettingsParams } from '../shared';
 import { StorageService } from './storage.service';
 
 @Injectable()
