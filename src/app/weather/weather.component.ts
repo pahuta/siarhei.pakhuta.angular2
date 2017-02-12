@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 
-import { UserSettingsService } from '../core';
-import { WeatherData } from './weather-data.model';
-import { Coords, UserSettings, VARS } from '../shared';
+import { UserSettingsService, WeatherService } from '../core';
+import { UserSettings, WeatherData } from '../shared';
 
 @Component({
     selector: 'weather',
@@ -15,28 +13,20 @@ import { Coords, UserSettings, VARS } from '../shared';
     styles: [require('./weather.component.scss').toString()]
 })
 export class WeatherComponent implements OnInit {
-    @Input() currentPositionPromise: Promise<Coords>;
     @Input() cityCount: number;
 
     data: Observable<WeatherData>;
     userSettings: UserSettings;
     isOpenFiltersMenu: boolean = false;
-    private currentCoords: Coords;
     private regularlyUpdateWeathersIntervalId: number;
 
     constructor(
-        private http: Http,
-        private userSettingsService: UserSettingsService
-    ) {
-        this.cityCount = this.cityCount || VARS.weatherConfig.cityCount;
-    }
+        private userSettingsService: UserSettingsService,
+        private weatherService: WeatherService
+    ) {}
 
     ngOnInit() {
-        this.currentPositionPromise
-            .then((coords: Coords) => {
-                this.currentCoords = coords;
-                this.updateWeatherData();
-            });
+        this.updateWeatherData();
 
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
@@ -66,23 +56,11 @@ export class WeatherComponent implements OnInit {
         this.userSettingsService.setProfilingMode(newValue);
     }
 
-    private getWeatherData(coords: Coords): Observable<WeatherData> {
-        let url = `http://api.openweathermap.org/data/2.5/find?lat=${coords.lat}&lon=${coords.lng}&cnt=${this.cityCount}&appid=${VARS.weatherConfig.api_key}`;
-
-        // return this.http.get(url)
-        //     .catch(err => this.getMockWeather.bind(this))
-        //     .map((response: Response) => response.json() as WeatherData);
-
-        return this.getMockWeather()
-            .map((response: Response) => response.json() as WeatherData);
-
-    }
-
-    private getMockWeather(): Observable<Response> {
-        return this.http.get('./mock/mock-weather.json');
-    }
-
     private updateWeatherData() {
-        this.data = this.getWeatherData(this.currentCoords);
+        this.weatherService.getCitiesWeather(this.cityCount).subscribe(
+            (dataObservable) => {
+                this.data = dataObservable;
+            }
+        );
     }
 }

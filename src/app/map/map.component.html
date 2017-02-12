@@ -1,4 +1,4 @@
 <loader [ngClass]="{'show-loader': isLoading}"></loader>
-<sebm-google-map [latitude]="currentPosition.lat" [longitude]="currentPosition.lng" [zoom]="zoom">
-    <sebm-google-map-marker [latitude]="currentPosition.lat" [longitude]="currentPosition.lng"></sebm-google-map-marker>
+<sebm-google-map [latitude]="(currentPosition | async)?.lat" [longitude]="(currentPosition | async)?.lng" [zoom]="zoom">
+    <sebm-google-map-marker [latitude]="(currentPosition | async)?.lat" [longitude]="(currentPosition | async)?.lng"></sebm-google-map-marker>
 </sebm-google-map>

@@ -35,7 +35,7 @@ export class UserSettingsService {
         this.userSettingsObservable.next(_.clone(this.userSettings));
     }
 
-    getSettingsObservable() {
+    getSettingsObservable(): BehaviorSubject<UserSettings> {
         return this.userSettingsObservable;
     }
 

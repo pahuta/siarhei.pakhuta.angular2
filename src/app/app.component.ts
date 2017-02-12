@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Coords, UserSettings } from './shared'
+import { UserSettings } from './shared'
 import { UserSettingsService } from './core'
 import { Observable, Observer, Scheduler } from 'rxjs';
 
@@ -10,29 +10,12 @@ import { Observable, Observer, Scheduler } from 'rxjs';
     styles: [require('./app.component.scss').toString()]
 })
 export class AppComponent implements OnInit {
-    currentPositionPromise: Promise<Coords>;
-    currentPosition: Coords = {
-        lat: 0,
-        lng: 0
-    };
     isOpenDisplayModesMenu: boolean = false;
     userSettings: UserSettings;
 
     constructor(private userSettingsService: UserSettingsService) {}
 
     ngOnInit() {
-        this.currentPositionPromise = new Promise((resolve: Function, reject: Function) => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position: Position) => {
-                    this.currentPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    resolve(this.currentPosition);
-                });
-            }
-        });
-
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
             (userSettings) => {
@@ -63,6 +46,7 @@ export class AppComponent implements OnInit {
     }
 
     task6() {
+        // example with flatMap. BehaviorSubject is using in user-settings.service.ts
         let $source = Observable.interval(50)
             .take(10)
             .flatMap((x: number): Observable<number> => {
