@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserSettings } from './shared'
-import { UserSettingsService } from './core'
+import { UserSettingsService, LoggerService } from './core'
 import { Observable, Observer, Scheduler } from 'rxjs';
 
 @Component({
@@ -13,9 +13,14 @@ export class AppComponent implements OnInit {
     isOpenDisplayModesMenu: boolean = false;
     userSettings: UserSettings;
 
-    constructor(private userSettingsService: UserSettingsService) {}
+    constructor(
+        private userSettingsService: UserSettingsService,
+        private loggerService: LoggerService
+    ) {}
 
     ngOnInit() {
+        this.loggerService.log('App was started!');
+
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
             (userSettings) => {

@@ -4,6 +4,7 @@ import { UserSettingsService} from './user-settings.service';
 import { StorageService } from './storage.service';
 import { LocationService } from './location.service';
 import { WeatherService } from './weather.service';
+import { LoggerService } from './logger.service';
 
 @NgModule({
     imports: [],
@@ -13,7 +14,8 @@ import { WeatherService } from './weather.service';
         UserSettingsService,
         StorageService,
         LocationService,
-        WeatherService
+        WeatherService,
+        LoggerService
     ]
 })
 export class CoreModule {}

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Coords } from '../shared'
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class LocationService {
     private position: Coords;
 
-    constructor() {};
+    constructor(private loggerService: LoggerService) {};
 
     getPosition(): Subject<Coords> {
         let defaultPosition: Coords = {
@@ -23,6 +24,8 @@ export class LocationService {
             // case when browser support Geolocation API
             navigator.geolocation.getCurrentPosition(
                 (position: Position) => {
+                    this.loggerService.logSuccess('Location data received');
+
                     this.position = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
@@ -30,10 +33,13 @@ export class LocationService {
                     positionSubject.next(this.position);
                 },
                 () => {
+                    this.loggerService.logError(`Location data didn't receive. Browser: ${navigator.appVersion}`);
                     positionSubject.next(defaultPosition);
                 }
             );
         } else {
+            this.loggerService.logError(`Browser doesn\'t support Geolocation API. Browser: ${navigator.appVersion}`);
+
             // case when browser doesn't support Geolocation API
             positionSubject.next(defaultPosition);
         }

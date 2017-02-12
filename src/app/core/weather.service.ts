@@ -4,13 +4,15 @@ import { Observable, Subject } from 'rxjs';
 
 import { WeatherData, CityWeatherData, Coords, VARS } from '../shared';
 import { LocationService } from './location.service';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class WeatherService {
 
     constructor(
         private http: Http,
-        private locationService: LocationService
+        private locationService: LocationService,
+        private loggerService: LoggerService
     ) {};
 
     // returned weather for @cityCount nearby cities
@@ -36,6 +38,8 @@ export class WeatherService {
 
     private getWeatherData(cityCount: number = VARS.weatherConfig.cityCount, position: Coords): Observable<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${position.lat}&lon=${position.lng}&cnt=${cityCount}&appid=${VARS.weatherConfig.api_key}`;
+
+        this.loggerService.log(`Get weather data for ${cityCount} cities`);
 
         // return this.http.get(url)
         //     .catch(err => this.getMockWeather.bind(this))
