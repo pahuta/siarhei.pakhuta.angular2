@@ -20,6 +20,7 @@
     ]
   },
   "files": [
-    "main.ts"
+    "src/app/app.module.ts",
+    "src/main-aot.ts"
   ]
 }
