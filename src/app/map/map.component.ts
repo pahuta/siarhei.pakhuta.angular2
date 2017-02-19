@@ -6,8 +6,8 @@ import { LocationService } from '../core';
 
 @Component({
     selector: 'map',
-    template: require('./map.component.html'),
-    styles: [require('./map.component.scss').toString()]
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
     isLoading: boolean = false;

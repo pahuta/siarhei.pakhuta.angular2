@@ -5,8 +5,8 @@ import { UserSettingsService } from '../core';
 
 @Component({
     selector: 'weather-widget',
-    template: require('./weather-widget.component.html'),
-    styles: [require('./weather-widget.component.scss').toString()],
+    templateUrl: './weather-widget.component.html',
+    styleUrls: ['./weather-widget.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherWidgetComponent implements OnInit  {

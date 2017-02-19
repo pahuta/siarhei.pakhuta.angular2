@@ -9,8 +9,8 @@ import { UserSettings, WeatherData } from '../shared';
 
 @Component({
     selector: 'weather',
-    template: require('./weather.component.html'),
-    styles: [require('./weather.component.scss').toString()]
+    templateUrl: './weather.component.html',
+    styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
     @Input() cityCount: number;

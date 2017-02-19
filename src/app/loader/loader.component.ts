@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
+// require
+
 @Component({
     selector: 'loader',
-    template: './loader.component.html',
+    templateUrl: './loader.component.html',
     styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent  {

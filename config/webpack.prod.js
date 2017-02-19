@@ -4,7 +4,11 @@ var commonConfig = require('./webpack.common');
 var AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 module.exports = webpackMerge(commonConfig('production'), {
-    /*loaders: [
+    entry: {
+        app: './src/main-aot.ts'
+    },
+
+    loaders: [
         {
             test: /\.ts$/,
             loader: '@ngtools/webpack'
@@ -13,9 +17,11 @@ module.exports = webpackMerge(commonConfig('production'), {
 
     plugins: [
         new AotPlugin({
-            tsConfigPath: 'tsconfig-prod.json',
-            entryModule: 'src/app/app.module#AppModule'
+            tsConfigPath: './tsconfig-prod.json',
+            entryModule: './src/app/app.module.ts#AppModule',
+            skipCodeGeneration: true,
+            typeChecking: false
         })
-    ]*/
+    ]
 });
 

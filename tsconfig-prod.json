@@ -10,10 +10,6 @@
     "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "lib": [
-      "ES2015",
-      "DOM"
-    ],
     "types": [
       "core-js",
       "googlemaps",
@@ -23,10 +19,6 @@
       "lodash"
     ]
   },
-  "files": [
-    "src/app/app.module.ts",
-    "src/main-aot.ts"
-  ],
   "angularCompilerOptions": {
     "genDir": "aot",
     "skipMetadataEmit" : true

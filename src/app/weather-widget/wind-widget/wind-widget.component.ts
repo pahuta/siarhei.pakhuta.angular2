@@ -4,8 +4,8 @@ import { UserSettings, Wind } from '../../shared';
 
 @Component({
     selector: 'wind-widget',
-    template: require('./wind-widget.component.html'),
-    styles: [require('./wind-widget.component.scss').toString()]
+    templateUrl: './wind-widget.component.html',
+    styleUrls: ['./wind-widget.component.scss']
 })
 export class WindWidgetComponent  {
     @Input() windData: Wind;

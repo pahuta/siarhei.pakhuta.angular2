@@ -7,9 +7,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function(ENV) {
     return {
-        entry: {
-            app: './src/main-aot.ts'
-        },
+        /*entry: {
+            app: './src/main.ts'
+        },*/
 
         output: {
             path: './dist',
@@ -24,24 +24,26 @@ module.exports = function(ENV) {
         },
 
         module: {
-            preLoaders: [
+            /*preLoaders: [
                 {
                     test: /\.ts$/,
                     loader: 'tslint-loader'
                 }
-            ],
+            ],*/
             loaders: [
-                {
+                /*{
                     test: /\.ts$/,
-                    loader: 'ts-loader',
-                    query: {
-                        configFileName: 'tsconfig-prod.json'
-                    }
-                },
-                {
-                    test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
-                },
+                    // loaders: ['ts-loader', 'angular2-template-loader'],
+                    loaders: ['ts-loader'],
+                    // query: {
+                    //     configFileName: 'tsconfig-prod.json'
+                    // }
+
+                },*/
+                // {
+                //     test: /\.scss$/,
+                //     loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
+                // },
                 {
                     test: /\.html$/,
                     loader: 'html-loader'
