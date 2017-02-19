@@ -8,12 +8,14 @@ module.exports = webpackMerge(commonConfig('production'), {
         app: './src/main-aot.ts'
     },
 
-    loaders: [
-        {
-            test: /\.ts$/,
-            loader: '@ngtools/webpack'
-        }
-    ],
+    module: {
+        loaders: [
+            {
+                test: /\.ts$/,
+                loader: '@ngtools/webpack'
+            }
+        ]
+    },
 
     plugins: [
         new AotPlugin({

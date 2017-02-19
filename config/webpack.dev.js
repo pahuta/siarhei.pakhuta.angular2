@@ -8,11 +8,14 @@ module.exports = webpackMerge(commonConfig('development'), {
 
     devtool: 'source-map',
 
-    loaders: [
-        {
-            test: /\.ts$/,
-            loaders: ['ts-loader']
-        }
-    ]
+    module: {
+        loaders: [
+            {
+                test: /\.ts$/,
+                loaders: ['ts-loader', 'angular2-template-loader']
+                // loaders: ['ts-loader', 'angular2-template-loader?keepUrl=true']
+            }
+        ]
+    }
 });
 

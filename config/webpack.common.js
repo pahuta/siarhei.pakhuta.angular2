@@ -24,12 +24,12 @@ module.exports = function(ENV) {
         },
 
         module: {
-            /*preLoaders: [
+            preLoaders: [
                 {
                     test: /\.ts$/,
                     loader: 'tslint-loader'
                 }
-            ],*/
+            ],
             loaders: [
                 /*{
                     test: /\.ts$/,
@@ -40,10 +40,11 @@ module.exports = function(ENV) {
                     // }
 
                 },*/
-                // {
-                //     test: /\.scss$/,
-                //     loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
-                // },
+                {
+                    test: /\.scss$/,
+                    // loader: ExtractTextPlugin.extract('style', 'css!sass?sourceMap')
+                    loader: 'to-string-loader!css!sass?sourceMap'
+                },
                 {
                     test: /\.html$/,
                     loader: 'html-loader'
