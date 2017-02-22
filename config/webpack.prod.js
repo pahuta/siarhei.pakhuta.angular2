@@ -9,10 +9,12 @@ module.exports = webpackMerge(commonConfig('production'), {
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.ts$/,
-                loader: '@ngtools/webpack'
+                use: [
+                    "@ngtools/webpack"
+                ]
             }
         ]
     },

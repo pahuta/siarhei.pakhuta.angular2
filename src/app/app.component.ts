@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { UserSettings } from './shared'
 import { UserSettingsService, LoggerService } from './core'
 import { Observable, Observer, Scheduler } from 'rxjs';
 
-// encapsulation: ViewEncapsulation.None
+
 
 @Component({
     selector: 'app',

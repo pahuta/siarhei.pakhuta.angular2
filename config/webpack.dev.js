@@ -9,13 +9,28 @@ module.exports = webpackMerge(commonConfig('development'), {
     devtool: 'source-map',
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.ts$/,
-                loaders: ['ts-loader', 'angular2-template-loader']
-                // loaders: ['ts-loader', 'angular2-template-loader?keepUrl=true']
+                use: [
+                    "ts-loader",
+                    "angular2-template-loader"
+                ],
+                exclude: /node_modules/
             }
         ]
+    },
+
+    devServer: {
+        host: 'localhost',
+        port: 3000,
+        historyApiFallback: true,
+        contentBase: "/dist",
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000,
+            ignored: /node_modules/
+        }
     }
 });
 
