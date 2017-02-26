@@ -6,8 +6,7 @@
     "start": "npm run build:aot && node server",
     "build:jit": "webpack --display-error-details",
     "build:aot": "webpack --env.NODE_ENV=production",
-    "server": "webpack-dev-server --progress --profile --watch",
-    "ngc": "ngc -p tsconfig.aot.json"
+    "server": "webpack-dev-server --progress --profile --watch"
   },
   "engines": {
     "node": "6.8.0",
