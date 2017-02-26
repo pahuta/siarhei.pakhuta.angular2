@@ -6,6 +6,6 @@ import { enableProdMode } from '@angular/core';
 // import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
 import { AppModuleNgFactory } from '../aot/src/app/app.module.ngfactory';
 
-console.log('***** RUN IN AOT MODE');
+console.log('***** RUN IN AOT MODE *****');
 enableProdMode();
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
