@@ -7,17 +7,6 @@ var helper = require('./helper');
 
 module.exports = function(ENV) {
     return {
-        output: {
-            path: helper.rootPath("/dist"),
-            publicPath: "/",
-            filename: "[name].js"
-        },
-
-        resolve: {
-            extensions: [".js", ".ts", ".html"],
-            modules: ["node_modules"]
-        },
-
         module: {
             rules: [
                 {

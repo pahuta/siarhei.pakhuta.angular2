@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges, ElementRef } from '@angular/core';
+import { Directive, Input, OnChanges, ElementRef, SimpleChanges } from '@angular/core';
 
 @Directive({
     selector: '[windDirection]'
@@ -8,7 +8,7 @@ export class WindDirectionDirective implements OnChanges {
 
     constructor(private el: ElementRef) {}
 
-    ngOnChanges() {
+    ngOnChanges(changes: SimpleChanges) {
         this.el.nativeElement.style.transform = `rotateZ(${this.degree}deg)`;
     }
 }

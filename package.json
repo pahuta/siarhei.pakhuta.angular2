@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "angular2_training_epam",
   "scripts": {
-    "start": "npm run build && node server",
-    "build": "webpack --display-error-details",
-    "build:prod": "npm run ngc && webpack --display-error-details",
+    "start": "npm run build:aot && node server",
+    "build:jit": "webpack --display-error-details",
+    "build:aot": "npm run ngc && webpack",
     "server": "webpack-dev-server --progress --profile --watch",
-    "ngc": "ngc -p tsconfig-prod.json"
+    "ngc": "ngc -p tsconfig.aot.json"
   },
   "engines": {
     "node": "6.8.0",
@@ -32,6 +32,7 @@
     "@angular/http": "2.4.7",
     "@angular/platform-browser": "2.4.7",
     "@angular/platform-browser-dynamic": "2.4.7",
+    "@angular/platform-server": "2.4.7",
     "@angular/router": "3.2.4",
     "@ngtools/webpack": "1.2.10",
     "@types/core-js": "0.9.34",
@@ -42,6 +43,7 @@
     "@types/whatwg-fetch": "0.0.32",
     "angular2-google-maps": "0.16.0",
     "angular2-template-loader": "0.6.2",
+    "compression-webpack-plugin": "0.3.2",
     "copy-webpack-plugin": "4.0.1",
     "core-js": "2.4.1",
     "css-loader": "0.26.1",
@@ -54,11 +56,11 @@
     "moment": "2.17.1",
     "node-sass": "4.0.0",
     "raw-loader": "0.5.1",
-    "reflect-metadata": "^0.1.10",
+    "reflect-metadata": "0.1.10",
     "rxjs": "5.1.0",
     "sass-loader": "6.0.2",
     "style-loader": "0.13.1",
-    "systemjs": "^0.20.9",
+    "systemjs": "0.20.9",
     "ts-loader": "2.0.0",
     "tslint": "4.0.2",
     "tslint-loader": "3.4.2",
@@ -66,6 +68,6 @@
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.1",
     "webpack-merge": "2.6.1",
-    "zone.js": "^0.7.7"
+    "zone.js": "0.7.7"
   }
 }

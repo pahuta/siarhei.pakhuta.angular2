@@ -1,31 +1,55 @@
 var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.common');
-
-var AotPlugin = require('@ngtools/webpack').AotPlugin;
+var webpack = require('webpack');
+var CompressionPlugin = require("compression-webpack-plugin");
+var helper = require('./helper');
 
 module.exports = webpackMerge(commonConfig('production'), {
     entry: {
-        app: './src/main-aot.ts'
+        'app': './dist/unbundled-aot/src/main.aot.js'
     },
 
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                use: [
-                    "@ngtools/webpack"
-                ]
-            }
-        ]
+    output: {
+        path: helper.rootPath("/dist/aot"),
+        publicPath: "dist/",
+        filename: "[name].js"
+    },
+
+    profile: true,
+    devtool: false,
+
+    resolve: {
+        extensions: [".js", ".html"],
+        modules: ["node_modules"]
     },
 
     plugins: [
-        new AotPlugin({
-            tsConfigPath: './tsconfig-prod.json',
-            entryModule: './src/app/app.module.ts#AppModule',
-            skipCodeGeneration: true,
-            typeChecking: false
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
+        }),
+
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            output: {
+                comments: false
+            },
+            sourceMap: false
+        }),
+
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
         })
-    ]
+    ],
+
+    node: {
+        __filename: true
+    }
 });
 
