@@ -6,8 +6,7 @@
     "start": "npm run build:aot && node server",
     "build:jit": "webpack --display-error-details",
     "build:aot": "webpack --env.NODE_ENV=production",
-    "server": "webpack-dev-server --progress --profile --watch",
-    "ngc": "ngc -p tsconfig.aot.json"
+    "server": "webpack-dev-server --progress --profile --watch"
   },
   "engines": {
     "node": "6.8.0",
@@ -42,7 +41,6 @@
     "@types/whatwg-fetch": "0.0.32",
     "angular2-google-maps": "0.16.0",
     "angular2-template-loader": "0.6.2",
-    "compression-webpack-plugin": "0.3.2",
     "copy-webpack-plugin": "4.0.1",
     "core-js": "2.4.1",
     "css-loader": "0.26.1",

@@ -1,7 +1,6 @@
 var webpackMerge = require('webpack-merge');
 var commonConfig = require('./webpack.common');
 var webpack = require('webpack');
-var CompressionPlugin = require("compression-webpack-plugin");
 var helper = require('./helper');
 var AotPlugin = require('@ngtools/webpack').AotPlugin;
 
@@ -36,27 +35,16 @@ module.exports = webpackMerge(commonConfig('production'), {
             typeChecking: false
         }),
 
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        }),
-
         new webpack.optimize.UglifyJsPlugin({
+            beautify: false,
+            mangle: {
+                keep_fnames: true
+            },
             compress: {
                 warnings: false
             },
-            output: {
-                comments: false
-            },
+            comments: false,
             sourceMap: false
-        }),
-
-        new CompressionPlugin({
-            asset: "[path].gz[query]",
-            algorithm: "gzip",
-            test: /\.js$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8
         })
     ],
 
