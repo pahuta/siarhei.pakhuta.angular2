@@ -10,7 +10,6 @@
     "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "lib": ["es2015", "dom"],
     "types": [
       "googlemaps",
       "moment",
