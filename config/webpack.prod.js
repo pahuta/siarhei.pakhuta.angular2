@@ -8,7 +8,6 @@ var AotPlugin = require('@ngtools/webpack').AotPlugin;
 
 module.exports = webpackMerge(commonConfig('production'), {
     entry: {
-        // 'app': './dist/unbundled-aot/src/main.aot.js'
         app: './src/main.aot.ts'
     },
 
@@ -31,18 +30,14 @@ module.exports = webpackMerge(commonConfig('production'), {
         ]
     },
 
-    // skipCodeGeneration: true,
-
-
     plugins: [
         new AotPlugin({
             tsConfigPath: './tsconfig.aot.json',
-            // entryModule: './src/app/app.module.ts#AppModule'
             entryModule: helper.rootPath("/src/app/") + "app.module#AppModule",
             typeChecking: false
         }),
 
-        /*new webpack.LoaderOptionsPlugin({
+        new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
         }),
@@ -63,7 +58,7 @@ module.exports = webpackMerge(commonConfig('production'), {
             test: /\.js$|\.html$/,
             threshold: 10240,
             minRatio: 0.8
-        })*/
+        })
     ],
 
     node: {
