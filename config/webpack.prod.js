@@ -11,7 +11,6 @@ module.exports = webpackMerge(commonConfig('production'), {
 
     output: {
         path: helper.rootPath("/dist/aot"),
-        publicPath: "/",
         filename: "[name].js"
     },
 
