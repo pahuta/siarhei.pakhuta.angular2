@@ -62,7 +62,7 @@ module.exports = function(ENV) {
 
             new webpack.DefinePlugin({
                 "process.env": {
-                    "ENV": JSON.stringify(ENV)
+                    "NODE_ENV": JSON.stringify(ENV)
                 }
             }),
 

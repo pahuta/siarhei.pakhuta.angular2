@@ -4,9 +4,9 @@ import * as moment from 'moment';
 
 @Injectable()
 export class LoggerService {
-    private successStyle = `color : green`;
-    private errorStyle = `color : red`;
-    private normalStyle = `color : blue`;
+    protected successStyle = `color : green`;
+    protected errorStyle = `color : red`;
+    protected normalStyle = `color : blue`;
 
     constructor() {};
 
@@ -22,7 +22,7 @@ export class LoggerService {
         console.log(`%c${this.addTimestamp(message)}`, this.errorStyle);
     }
 
-    private addTimestamp(message: string): string {
+    protected addTimestamp(message: string): string {
         return `${moment().format('DD.MM.YYYY HH:mm:ss')} ${message}`;
     }
 }
