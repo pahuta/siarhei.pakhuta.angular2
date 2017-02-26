@@ -5,7 +5,6 @@
     "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist/unbundled-aot",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": true,
@@ -20,6 +19,9 @@
       "lodash"
     ]
   },
+  "files": [
+    "./src/main.ts"
+  ],
   "angularCompilerOptions": {
     "genDir": "aot",
     "skipMetadataEmit" : true

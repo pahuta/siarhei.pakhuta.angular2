@@ -7,6 +7,11 @@ var helper = require('./helper');
 
 module.exports = function(ENV) {
     return {
+        resolve: {
+            extensions: [".ts", ".js", ".html"],
+            modules: ["node_modules"]
+        },
+
         module: {
             rules: [
                 {

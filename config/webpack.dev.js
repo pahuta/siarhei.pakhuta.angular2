@@ -15,11 +15,6 @@ module.exports = webpackMerge(commonConfig('development'), {
 
     devtool: 'source-map',
 
-    resolve: {
-        extensions: [".ts", ".js", ".html"],
-        modules: ["node_modules"]
-    },
-
     module: {
         rules: [
             {

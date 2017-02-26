@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run build:aot && node server",
     "build:jit": "webpack --display-error-details",
-    "build:aot": "npm run ngc && webpack --env.NODE_ENV=production",
+    "build:aot": "webpack --env.NODE_ENV=production",
     "server": "webpack-dev-server --progress --profile --watch",
     "ngc": "ngc -p tsconfig.aot.json"
   },
