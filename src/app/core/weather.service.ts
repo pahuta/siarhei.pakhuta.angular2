@@ -16,14 +16,11 @@ export class WeatherService {
     ) {};
 
     // returned weather for @cityCount nearby cities
-    getCitiesWeather(cityCount: number): Subject<Observable<WeatherData>> {
+    getCitiesWeather(cityCount: number): Subject<Subject<WeatherData>> {
         let citiesWeatherSubject = new Subject();
 
-        this.locationService.getPosition().subscribe(
-            position => {
-                citiesWeatherSubject.next(this.getWeatherData(cityCount, position));
-            }
-        );
+        this.locationService.getPosition()
+            .subscribe(position => citiesWeatherSubject.next(this.getWeatherData(cityCount, position)));
 
         return citiesWeatherSubject;
     }
@@ -36,21 +33,25 @@ export class WeatherService {
             .map((response: Response) => response.json() as CityWeatherData);
     }
 
-    private getWeatherData(cityCount: number = VARS.weatherConfig.cityCount, position: Coords): Observable<WeatherData> {
+    private getWeatherData(cityCount: number = VARS.weatherConfig.cityCount, position: Coords): Subject<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${position.lat}&lon=${position.lng}&cnt=${cityCount}&appid=${VARS.weatherConfig.api_key}`;
+        let weatherDataSubject = new Subject();
 
         this.loggerService.log(`Get weather data for ${cityCount} cities`);
 
-        // return this.http.get(url)
-        //     .catch(err => this.getMockWeather.bind(this))
-        //     .map((response: Response) => response.json() as WeatherData);
+        this.http.get(url)
+            .catch(err => this.getMockWeather.bind(this))
+            .map((response: Response) => response.json() as WeatherData)
+            .subscribe(weatherData => weatherDataSubject.next(weatherData));
 
-        return this.getMockWeather()
-            .map((response: Response) => response.json() as WeatherData);
+        // this.getMockWeather()
+        //     .map((response: Response) => response.json() as WeatherData)
+        //     .subscribe(weatherData => weatherDataSubject.next(weatherData));
+
+        return weatherDataSubject;
     }
 
     private getMockWeather(): Observable<Response> {
         return this.http.get('./mock/mock-weather.json');
     }
-
 }

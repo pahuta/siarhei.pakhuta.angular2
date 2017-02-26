@@ -15,7 +15,7 @@ export class LocationService {
             lat: 0,
             lng: 0
         };
-        let positionSubject =  new Subject();
+        let positionSubject = new Subject();
 
         if (this.position) {
             // case when position already defined
