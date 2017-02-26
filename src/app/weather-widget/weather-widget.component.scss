@@ -1,8 +1,8 @@
-@import "../../colors";
+@import "../../colors.scss";
 
 $temperature-gradient-width: 10px;
 
-weather-widget {
+:host {
   position: relative;
   display: block;
   margin-top: 24px;

@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { CityWeatherData } from './city-weather-data.model';
-import { UserSettings } from '../shared';
+import { CityWeatherData, UserSettings } from '../shared';
 import * as _ from 'lodash';
 
 @Pipe({name: 'filter'})

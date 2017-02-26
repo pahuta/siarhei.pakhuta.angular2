@@ -1,12 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
-import { CityWeatherData, VARS } from '../weather';
-import { UserSettings, UserSettingsService } from '../shared';
+import { UserSettings, CityWeatherData, VARS } from '../shared';
+import { UserSettingsService } from '../core';
 
 @Component({
     selector: 'weather-widget',
-    template: require('./weather-widget.component.html'),
-    styles: [require('./weather-widget.component.scss').toString()],
+    templateUrl: './weather-widget.component.html',
+    styleUrls: ['./weather-widget.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherWidgetComponent implements OnInit  {

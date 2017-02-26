@@ -1,36 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Coords, UserSettingsService, UserSettings } from './shared'
+import { UserSettings } from './shared'
+import { UserSettingsService, LoggerService } from './core'
 import { Observable, Observer, Scheduler } from 'rxjs';
+
+
 
 @Component({
     selector: 'app',
-    template: require('./app.component.html'),
-    styles: [require('./app.component.scss').toString()]
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    currentPositionPromise: Promise<Coords>;
-    currentPosition: Coords = {
-        lat: 0,
-        lng: 0
-    };
     isOpenDisplayModesMenu: boolean = false;
     userSettings: UserSettings;
 
-    constructor(private userSettingsService: UserSettingsService) {}
+    constructor(
+        private userSettingsService: UserSettingsService,
+        private loggerService: LoggerService
+    ) {}
 
     ngOnInit() {
-        this.currentPositionPromise = new Promise((resolve: Function, reject: Function) => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position: Position) => {
-                    this.currentPosition = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    resolve(this.currentPosition);
-                });
-            }
-        });
+        this.loggerService.log('App was started!');
 
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
@@ -62,6 +53,7 @@ export class AppComponent implements OnInit {
     }
 
     task6() {
+        // example with flatMap. BehaviorSubject is using in user-settings.service.ts
         let $source = Observable.interval(50)
             .take(10)
             .flatMap((x: number): Observable<number> => {

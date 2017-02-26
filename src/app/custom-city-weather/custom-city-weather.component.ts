@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UserSettings, UserSettingsService } from '../shared';
+
+import { UserSettingsService } from '../core';
+import { UserSettings } from '../shared';
 
 @Component({
     selector: 'custom-city-weather',
-    template: require('./custom-city-weather.component.html'),
-    styles: [require('./custom-city-weather.component.scss').toString()],
+    templateUrl: './custom-city-weather.component.html',
+    styleUrls: ['./custom-city-weather.component.scss']
 })
 export class CustomCityWeatherComponent implements OnInit {
     cityName: string;

@@ -1,4 +1,4 @@
-@import "../colors";
+@import "../colors.scss";
 
 $display-modes-margin-right: 24px;
 
@@ -18,7 +18,7 @@ html, body {
   justify-content: flex-start;
 }
 
-app {
+:host {
   display: block;
   height: 100%;
 }

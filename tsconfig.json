@@ -16,8 +16,10 @@
       "moment",
       "whatwg-fetch",
       "node",
-      "immutable",
       "lodash"
     ]
-  }
+  },
+  "files": [
+    "./src/main.ts"
+  ]
 }
