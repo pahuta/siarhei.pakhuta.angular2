@@ -33,6 +33,19 @@
                    (change)="setRegularlyUpdateWeathers(regularlyUpdateWeathers.checked)">
             <label for="regularlyUpdateWeathers">update every 5 sec</label>
         </div>
+        <div class="filter-container">
+            <div>{{visibleOptionsItems | json}}</div>
+            <form #form="ngForm">
+                <fieldset>
+                    <checkbox name="visibleOptions"
+                              [items]="visibleOptionsItems"
+                              [(ngModel)]="visibleOptionsItems">
+                    </checkbox>
+                    <!--[items]="visibleOptionsItems"-->
+                    <!--[nameOption]="visibleOptions"-->
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
 <div class="row">

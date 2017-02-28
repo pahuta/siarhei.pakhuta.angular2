@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { UserSettingsService } from '../core';
 import { UserSettings } from '../shared';
@@ -9,9 +10,14 @@ import { UserSettings } from '../shared';
     styleUrls: ['./custom-city-weather.component.scss']
 })
 export class CustomCityWeatherComponent implements OnInit {
-    cityName: string;
+    cityNameValue: string;
     cityNameInput: string;
     userSettings: UserSettings;
+    errorMessage = {
+        invalidFirstCapitalLatter: 'City name must begin with a capital letter',
+        invalidOnlyLatterAndSpace: 'The city\'s name can contain only Latin letters and space',
+        invalidLength: `Too short length`
+    };
 
     constructor(private userSettingsService: UserSettingsService) {}
 
@@ -24,8 +30,8 @@ export class CustomCityWeatherComponent implements OnInit {
         );
     }
 
-    getCityWeatherData(): void {
-        this.cityName = this.cityNameInput;
-        this.cityNameInput = '';
+    getCityWeatherData(input: FormControl): void {
+        this.cityNameValue = input.value;
+        input.reset();
     }
 }

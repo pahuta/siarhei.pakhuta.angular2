@@ -6,6 +6,7 @@ export class UserSettings {
     filter?: string;
     cityList?: ICityList;
     isRegularlyUpdateWeathers?: boolean;
+    visibleOptions?: string[];
 
     constructor(params: UserSettings) {
         this.displayModes = new DisplayModes(params.displayModes);
@@ -13,6 +14,7 @@ export class UserSettings {
         this.filter = params.filter || 'noFilter';
         this.cityList = params.cityList || {};
         this.isRegularlyUpdateWeathers = params.isRegularlyUpdateWeathers || false;
+        this.visibleOptions = params.visibleOptions || [];
     }
 }
 

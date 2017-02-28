@@ -18,6 +18,25 @@ export class WeatherComponent implements OnInit {
     data: Observable<WeatherData>;
     userSettings: UserSettings;
     isOpenFiltersMenu: boolean = false;
+    visibleOptions = {};
+    visibleOptionsItems = {
+        humidity: {
+            caption: 'Humidity',
+            name: 'humidity',
+            checked: false
+        },
+        wind: {
+            caption: 'Wind',
+            name: 'wind',
+            checked: false
+        },
+        pressure: {
+            caption: 'Pressure',
+            name: 'pressure',
+            checked: false
+        }
+    };
+
     private regularlyUpdateWeathersIntervalId: number;
 
     constructor(

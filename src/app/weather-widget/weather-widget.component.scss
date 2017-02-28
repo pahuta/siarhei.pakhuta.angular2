@@ -126,6 +126,7 @@ $temperature-gradient-width: 10px;
       justify-content: center;
       align-items: center;
       flex-basis: 33%;
+      flex-grow: 1;
 
       &:nth-child(n+2) {
         border-left: 1px solid rgba(255,255,255,0.2);
