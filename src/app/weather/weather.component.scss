@@ -5,11 +5,24 @@
     display: flex;
     align-items: center;
 
+    .dropdown-menu {
+      cursor: pointer;
+    }
+
     .filter-container {
       display: flex;
 
       &:nth-child(n+2) {
         margin-left: 12px;
+      }
+
+      &.visible-options {
+        flex-direction: column;
+
+        &::before {
+          content: 'Display options:';
+          display: block;
+        }
       }
     }
   }

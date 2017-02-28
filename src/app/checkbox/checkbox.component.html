@@ -1,9 +1,8 @@
-<label *ngFor="let item of items" class="checkbox-block">
+<label class="checkbox-block">
     <input type="checkbox"
-           (change)="valueChanged($event)"
-           [value]="item.name"
-           [checked]="item.checked"
+           (change)="valueChanged($event.target)"
+           [value]="value"
+           [attr.checked]="value"
            name="{{item.name}}">
     <span>{{item.caption}}</span>
-    {{item | json}}
 </label>

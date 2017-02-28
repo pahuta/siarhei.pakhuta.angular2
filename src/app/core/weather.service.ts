@@ -39,14 +39,14 @@ export class WeatherService {
 
         this.loggerService.log(`Get weather data for ${cityCount} cities`);
 
-        this.http.get(url)
-            .catch(err => this.getMockWeather.bind(this))
-            .map((response: Response) => response.json() as WeatherData)
-            .subscribe(weatherData => weatherDataSubject.next(weatherData));
-
-        // this.getMockWeather()
+        // this.http.get(url)
+        //     .catch(err => this.getMockWeather.bind(this))
         //     .map((response: Response) => response.json() as WeatherData)
         //     .subscribe(weatherData => weatherDataSubject.next(weatherData));
+
+        this.getMockWeather()
+            .map((response: Response) => response.json() as WeatherData)
+            .subscribe(weatherData => weatherDataSubject.next(weatherData));
 
         return weatherDataSubject;
     }

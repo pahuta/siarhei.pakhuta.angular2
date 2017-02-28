@@ -50,8 +50,18 @@
         </div>
     </div>
     <div class="other-data-container">
-        <div class="other-data humidity">{{cityWeatherData.main.humidity}}%</div>
-        <wind-widget class="other-data wind" [windData]="cityWeatherData.wind" [userSettings]="userSettings"></wind-widget>
-        <div class="other-data pressure">{{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}</div>
+        <div class="other-data humidity"
+             [hidden]="!userSettings.visibleOptionsItems[0].checked">
+            {{cityWeatherData.main.humidity}}%
+        </div>
+        <wind-widget class="other-data wind"
+                     [hidden]="!userSettings.visibleOptionsItems[1].checked"
+                     [windData]="cityWeatherData.wind"
+                     [userSettings]="userSettings">
+        </wind-widget>
+        <div class="other-data pressure"
+             [hidden]="!userSettings.visibleOptionsItems[2].checked">
+            {{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}
+        </div>
     </div>
 </div>

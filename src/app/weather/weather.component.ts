@@ -18,24 +18,6 @@ export class WeatherComponent implements OnInit {
     data: Observable<WeatherData>;
     userSettings: UserSettings;
     isOpenFiltersMenu: boolean = false;
-    visibleOptions = {};
-    visibleOptionsItems = {
-        humidity: {
-            caption: 'Humidity',
-            name: 'humidity',
-            checked: false
-        },
-        wind: {
-            caption: 'Wind',
-            name: 'wind',
-            checked: false
-        },
-        pressure: {
-            caption: 'Pressure',
-            name: 'pressure',
-            checked: false
-        }
-    };
 
     private regularlyUpdateWeathersIntervalId: number;
 
@@ -65,6 +47,10 @@ export class WeatherComponent implements OnInit {
     setFilter(filterName: string) {
         this.userSettingsService.setSettings({'filter': filterName});
         this.isOpenFiltersMenu = false;
+    }
+
+    saveSettings() {
+        this.userSettingsService.setSettings({'visibleOptionsItems': this.userSettings.visibleOptionsItems});
     }
 
     isCityListEmpty(): boolean {

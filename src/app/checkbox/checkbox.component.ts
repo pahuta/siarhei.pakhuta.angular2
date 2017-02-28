@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { VisibleOptionsItems } from '../shared';
 
 const CHECKBOX_VALUE_ACCESSOR = {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxComponent), multi: true};
 
@@ -10,42 +11,39 @@ const CHECKBOX_VALUE_ACCESSOR = {provide: NG_VALUE_ACCESSOR, useExisting: forwar
     providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class CheckboxComponent implements ControlValueAccessor {
-    @Input() items: any;
-    // @Input() nameOption: string;
+    @Input() item: VisibleOptionsItems;
 
-    currentValue: any;
+    _value: boolean;
 
-    valueChanged($event: Event) {
-        this.checked = $event.target;
+    onChange: Function = () => {};
+    onTouched: Function = () => {};
+
+    get value() {
+        return this._value;
     }
 
-    set checked(newValue) {
-        debugger;
-        this.currentValue = newValue;
-        this.onChange(newValue);
+    set value(value) {
+        if (!value) {
+            value = null;
+        }
+        this._value = value;
+        this.onChange(value);
+        this.onTouched();
     }
 
-    get checked() {
-        return this.currentValue;
-    }
-
-    onChange = (newValue: boolean) => {};
-    onTouched = () => {};
-
-    registerOnChange(fn: () => void) {
+    registerOnChange(fn: () => {}) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn: () => void) {
+    writeValue(value: boolean) {
+        this._value = this.item['checked'];
+    }
+
+    registerOnTouched(fn: () => {}) {
         this.onTouched = fn;
     }
 
-    writeValue(value: boolean) {
-        if (value !== this.currentValue) {
-            debugger;
-            this.currentValue = value;
-        }
+    valueChanged(target: HTMLInputElement) {
+        this.value = target.checked;
     }
-
-    setDisabledState(isDisabled: boolean) {}
 }
