@@ -18,6 +18,7 @@ export class WeatherComponent implements OnInit {
     data: Observable<WeatherData>;
     userSettings: UserSettings;
     isOpenFiltersMenu: boolean = false;
+
     private regularlyUpdateWeathersIntervalId: number;
 
     constructor(
@@ -46,6 +47,10 @@ export class WeatherComponent implements OnInit {
     setFilter(filterName: string) {
         this.userSettingsService.setSettings({'filter': filterName});
         this.isOpenFiltersMenu = false;
+    }
+
+    saveSettings() {
+        this.userSettingsService.setSettings({'visibleOptionsItems': this.userSettings.visibleOptionsItems});
     }
 
     isCityListEmpty(): boolean {

@@ -1,0 +1,8 @@
+<label class="checkbox-block">
+    <input type="checkbox"
+           (change)="valueChanged($event.target)"
+           [value]="value"
+           [attr.checked]="value"
+           name="{{item.name}}">
+    <span>{{item.caption}}</span>
+</label>

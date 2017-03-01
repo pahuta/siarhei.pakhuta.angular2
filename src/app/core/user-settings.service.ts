@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { UserSettings } from '../shared';
-import * as _ from 'lodash';
+import { forEach, set, clone } from 'lodash';
 import { IUserSettingsParams } from '../shared';
 import { StorageService } from './storage.service';
 
@@ -28,11 +28,11 @@ export class UserSettingsService {
 
     setSettings(userSettingsParams: IUserSettingsParams) {
         // link on object userSettings saved
-        _.forEach(userSettingsParams, (value, path) => {
-            this.userSettings = _.set(this.userSettings, path, value);
+        forEach(userSettingsParams, (value, path) => {
+            this.userSettings = set(this.userSettings, path, value);
         });
         this.storageService.saveUserSettings(this.userSettings);
-        this.userSettingsObservable.next(_.clone(this.userSettings));
+        this.userSettingsObservable.next(clone(this.userSettings));
     }
 
     getSettingsObservable(): BehaviorSubject<UserSettings> {

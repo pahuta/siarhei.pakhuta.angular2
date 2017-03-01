@@ -33,6 +33,14 @@
                    (change)="setRegularlyUpdateWeathers(regularlyUpdateWeathers.checked)">
             <label for="regularlyUpdateWeathers">update every 5 sec</label>
         </div>
+        <div class="filter-container visible-options" *ngIf="userSettings">
+            <checkbox *ngFor="let item of userSettings.visibleOptionsItems"
+                      name="visibleOptions"
+                      [ngClass]="{checked: item.checked}"
+                      [(ngModel)]="item.checked" [item]="item"
+                      (change)="saveSettings()">
+            </checkbox>
+        </div>
     </div>
 </div>
 <div class="row">
