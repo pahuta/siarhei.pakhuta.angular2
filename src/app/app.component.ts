@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { UserSettings } from './shared'
 import { UserSettingsService, LoggerService } from './core'
@@ -9,7 +9,8 @@ import { Observable, Observer, Scheduler } from 'rxjs';
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
     isOpenDisplayModesMenu: boolean = false;

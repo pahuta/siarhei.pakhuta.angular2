@@ -11,78 +11,6 @@ html, body {
   color: $dark-gray;
 }
 
-.wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-:host {
-  display: block;
-  height: 100%;
-}
-
-header {
-  height: 100px;
-  flex-shrink: 0;
-  background-color: $dark-gray;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  .display-modes {
-
-    .toogle-menu-btn {
-      font-size: 24px;
-      margin-right: $display-modes-margin-right;
-      color: $light-gray;
-      cursor: pointer;
-
-      &:hover {
-        color: $white;
-      }
-    }
-
-    .btn-group {
-      .dropdown-menu {
-        top: -12px;
-        right: -$display-modes-margin-right;
-        left: auto;
-
-        .sub-title {
-          text-align: center;
-          cursor: default;
-
-          a {
-            color: $medium-gray;
-
-            &:hover {
-              background-color: transparent;
-              background-image: none;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-main {
-  flex-grow: 2;
-
-  .container {
-    margin-top: 24px;
-  }
-}
-
-footer {
-  height: 60px;
-  margin-top: 24px;
-  flex-shrink: 0;
-  background-color: $dark-gray;
-}
-
 label {
   font-weight: normal;
 }
@@ -100,5 +28,67 @@ label {
 
   .btn {
     color: $medium-gray;
+  }
+}
+
+app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .wrapper {
+    flex: 1 0 auto;
+  }
+
+  header {
+    height: 100px;
+    flex-shrink: 0;
+    background-color: $dark-gray;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .display-modes {
+
+      .toogle-menu-btn {
+        font-size: 24px;
+        margin-right: $display-modes-margin-right;
+        color: $light-gray;
+        cursor: pointer;
+
+        &:hover {
+          color: $white;
+        }
+      }
+
+      .btn-group {
+        .dropdown-menu {
+          top: -12px;
+          right: -$display-modes-margin-right;
+          left: auto;
+
+          .sub-title {
+            text-align: center;
+            cursor: default;
+
+            a {
+              color: $medium-gray;
+
+              &:hover {
+                background-color: transparent;
+                background-image: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    height: 60px;
+    margin-top: 24px;
+    flex: 0 0 auto;
+    background-color: $dark-gray;
   }
 }

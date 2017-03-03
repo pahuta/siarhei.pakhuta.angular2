@@ -1,0 +1,11 @@
+:host {
+  display: block;
+
+  main {
+    flex-grow: 2;
+
+    .container {
+      margin-top: 24px;
+    }
+  }
+}

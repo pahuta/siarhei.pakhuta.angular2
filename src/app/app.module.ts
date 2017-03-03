@@ -3,22 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { CustomCityWeatherModule } from './custom-city-weather';
-import { MapModule } from './map';
-import { WeatherModule } from './weather';
-import { WeatherWidgetModule } from './weather-widget';
+import { AppRoutingModule } from './app-routing.module';
+import { MainModule } from './main';
+import { NotFoundComponent } from './not-found';
+import { WeatherDetailsModule } from './weather-details';
 
 @NgModule({
     imports: [
         BrowserModule,
         CoreModule,
-        CustomCityWeatherModule,
-        MapModule,
-        WeatherModule,
-        WeatherWidgetModule
+        MainModule,
+        WeatherDetailsModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,
+        NotFoundComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
