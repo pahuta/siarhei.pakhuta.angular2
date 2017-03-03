@@ -8,6 +8,7 @@ import { IconSwitchCaseDirective } from './icon-switch-case.directive';
 import { IconSwitchDefaultDirective } from './icon-switch-default.directive';
 import { WindWidgetComponent, WindDirectionDirective } from './wind-widget';
 import { SharedModule } from '../shared';
+// import { WeatherDetailsResolverService } from '../weather-details/weather-details-resolver.service';
 
 @NgModule({
     imports: [
@@ -27,6 +28,8 @@ import { SharedModule } from '../shared';
     exports: [
         WeatherWidgetComponent
     ],
-    providers: []
+    providers: [
+        // WeatherDetailsResolverService
+    ]
 })
 export class WeatherWidgetModule {}

@@ -22,13 +22,29 @@ $temperature-gradient-width: 10px;
     }
   }
 
-  .controls-container {
+  .controls-group {
     position: absolute;
     z-index: 1;
+    font-size: 18px;
     display: flex;
+  }
+
+  .more-action {
+    top: 2px;
+    left: 5px;
+
+    a {
+      color: $white;
+    }
+
+    .details:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  .controls-container {
     top: 6px;
     right: $temperature-gradient-width + 6px;
-    font-size: 18px;
 
     .control {
       display: none;
@@ -62,6 +78,10 @@ $temperature-gradient-width: 10px;
   .main-data {
     display: flex;
     position: relative;
+
+    &.extend {
+      height: 150px;
+    }
 
     .shortcut {
       display: flex;
@@ -135,6 +155,16 @@ $temperature-gradient-width: 10px;
       &[hidden] {
         display: none;
       }
+
+      &.extend-data {
+        display: none;
+      }
+    }
+  }
+
+  &.extend {
+    .other-data-container > .other-data.extend-data {
+      display: flex;
     }
   }
 

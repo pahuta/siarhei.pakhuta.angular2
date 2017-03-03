@@ -1,4 +1,10 @@
-<div class="controls-container" *ngIf="!hideControls">
+<div class="controls-group more-action" *ngIf="cityWeatherData">
+    <div class="details" title="Details">
+        <a [routerLink]="['/weather-details', cityWeatherData.id]"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+<div class="controls-group controls-container" *ngIf="!hideControls">
     <div class="control add"
          [ngClass]="{hideControl: isCityInList(cityWeatherData?.name)}"
          (click)="addCityToList(cityWeatherData.name)"
@@ -62,6 +68,9 @@
         <div class="other-data pressure"
              [hidden]="!userSettings.visibleOptionsItems[2].checked">
             {{cityWeatherData.main.pressure | pressure:userSettings.displayModes.pressure}}
+        </div>
+        <div class="other-data clouds extend-data">
+            <i class="fa fa-cloud" aria-hidden="true"></i>{{cityWeatherData.clouds.all}}%
         </div>
     </div>
 </div>

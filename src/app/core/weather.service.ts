@@ -18,9 +18,10 @@ export class WeatherService {
     // returned weather for @cityCount nearby cities
     getCitiesWeather(cityCount: number): Subject<Subject<WeatherData>> {
         let citiesWeatherSubject = new Subject();
-
         this.locationService.getPosition()
-            .subscribe(position => citiesWeatherSubject.next(this.getWeatherData(cityCount, position)));
+            .subscribe(position => {
+            citiesWeatherSubject.next(this.getWeatherData(cityCount, position))
+        });
 
         return citiesWeatherSubject;
     }
@@ -33,20 +34,27 @@ export class WeatherService {
             .map((response: Response) => response.json() as CityWeatherData);
     }
 
+    getCityWeatherById(cityId: string): Observable<CityWeatherData> {
+        let url = `http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${VARS.weatherConfig.api_key}`;
+
+        return this.http.get(url)
+            .map((response: Response) => response.json() as CityWeatherData);
+    }
+
     private getWeatherData(cityCount: number = VARS.weatherConfig.cityCount, position: Coords): Subject<WeatherData> {
         let url = `http://api.openweathermap.org/data/2.5/find?lat=${position.lat}&lon=${position.lng}&cnt=${cityCount}&appid=${VARS.weatherConfig.api_key}`;
         let weatherDataSubject = new Subject();
 
         this.loggerService.log(`Get weather data for ${cityCount} cities`);
 
-        // this.http.get(url)
-        //     .catch(err => this.getMockWeather.bind(this))
-        //     .map((response: Response) => response.json() as WeatherData)
-        //     .subscribe(weatherData => weatherDataSubject.next(weatherData));
-
-        this.getMockWeather()
+        this.http.get(url)
+            .catch(err => this.getMockWeather.bind(this))
             .map((response: Response) => response.json() as WeatherData)
             .subscribe(weatherData => weatherDataSubject.next(weatherData));
+
+        // this.getMockWeather()
+        //     .map((response: Response) => response.json() as WeatherData)
+        //     .subscribe(weatherData => weatherDataSubject.next(weatherData));
 
         return weatherDataSubject;
     }
