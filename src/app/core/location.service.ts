@@ -11,6 +11,7 @@ export class LocationService {
     constructor(private loggerService: LoggerService) {};
 
     getPosition(): Subject<Coords> {
+        let self = this;
         let defaultPosition: Coords = {
             lat: 0,
             lng: 0
@@ -19,7 +20,9 @@ export class LocationService {
 
         if (this.position) {
             // case when position already defined
-            positionSubject.next(this.position);
+            setTimeout(function () {
+                positionSubject.next(self.position);
+            }, 0)
         } else if (navigator.geolocation) {
             // case when browser support Geolocation API
             navigator.geolocation.getCurrentPosition(
