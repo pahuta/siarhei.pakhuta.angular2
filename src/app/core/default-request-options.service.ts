@@ -5,6 +5,7 @@ import { isNull } from 'lodash';
 
 @Injectable()
 export class DefaultRequestOptions extends BaseRequestOptions {
+
     constructor() {
         super();
         this.headers.set('Content-Type', 'text/plain; charset=utf-8');
