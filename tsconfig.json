@@ -16,7 +16,8 @@
       "moment",
       "whatwg-fetch",
       "node",
-      "lodash"
+      "lodash",
+      "jasmine"
     ]
   },
   "files": [

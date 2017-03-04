@@ -20,7 +20,6 @@ import { SharedModule } from '../shared';
         TemperatureGradientPointerDirective,
         IconSwitchDirective,
         IconSwitchCaseDirective,
-        IconSwitchCaseDirective,
         IconSwitchDefaultDirective,
         WindWidgetComponent,
         WindDirectionDirective

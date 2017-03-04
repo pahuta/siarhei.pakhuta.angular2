@@ -8,12 +8,12 @@ module.exports = webpackMerge(commonConfig('development'), {
     },
 
     output: {
-        path: helper.rootPath("/dist/jit"),
+        path: helper.rootPath("/dist/test"),
         publicPath: "/",
         filename: "[name].js"
     },
 
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
 
     module: {
         rules: [
@@ -23,21 +23,27 @@ module.exports = webpackMerge(commonConfig('development'), {
                     "ts-loader",
                     "angular2-template-loader"
                 ],
-                exclude: [/\.spec\.ts$/, /node_modules/]
+                exclude: [/node_modules/]
+            },
+            {
+                enforce: 'post',
+                test: /\.ts$/,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [
+                    /\.(e2e|spec)\.ts$/,
+                    /node_modules/
+                ]
             }
         ]
     },
 
-    devServer: {
-        host: 'localhost',
-        port: 3000,
-        historyApiFallback: true,
-        contentBase: "/dist/jit",
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000,
-            ignored: /node_modules/
-        }
+    node: {
+        global: true,
+        process: false,
+        crypto: 'empty',
+        module: false,
+        clearImmediate: false,
+        setImmediate: false
     }
 });
 
