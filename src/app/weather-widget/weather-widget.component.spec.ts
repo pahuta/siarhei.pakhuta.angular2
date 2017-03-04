@@ -1,8 +1,9 @@
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { WeatherWidgetComponent } from './weather-widget.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { UserSettingsService } from '../core/user-settings.service';
+import { UserSettingsService } from '../core';
 import { IconSwitchDirective } from './icon-switch.directive';
 import { IconSwitchCaseDirective } from './icon-switch-case.directive';
 import { IconSwitchDefaultDirective } from './icon-switch-default.directive';
@@ -12,10 +13,6 @@ import { UserSettingsServiceStub, cityWeatherData, userSettings } from '../testi
 describe('Weather widget component test', () => {
     let comp: WeatherWidgetComponent;
     let fixture: ComponentFixture<WeatherWidgetComponent>;
-
-    /*describe('1st tests', () => {
-        it('true is true', () => expect(true).toBe(true));
-    });*/
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -44,5 +41,20 @@ describe('Weather widget component test', () => {
         fixture.detectChanges();
     });
 
-    it('true is true', () => expect(true).toBe(true));
+    it(`should be initialized`, () => {
+        expect(fixture).toBeDefined();
+        expect(comp).toBeDefined();
+    });
+
+    it('Visible city name', () => {
+        let cityName = fixture.debugElement.query(By.css('.city-name')).nativeElement.innerHTML;
+        expect(cityName).toBe('Homyel');
+    });
+
+    it('Add to favorite', () => {
+        let favoriteButton = fixture.debugElement.query(By.css('.control.favorite'));
+        favoriteButton.triggerEventHandler('click', null);
+        fixture.detectChanges();
+        expect(favoriteButton.nativeElement.classList.contains('active')).toBeTruthy();
+    });
 });

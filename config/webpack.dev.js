@@ -23,9 +23,7 @@ module.exports = webpackMerge(commonConfig('development'), {
                     "ts-loader",
                     "angular2-template-loader"
                 ],
-                // exclude: [/\.spec\.ts$/]
-                // exclude: [/\.spec\.ts$/, /node_modules/]
-                exclude: [/node_modules/]
+                exclude: [/\.spec\.ts$/, /node_modules/]
             }
         ]
     },

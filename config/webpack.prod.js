@@ -23,8 +23,7 @@ module.exports = webpackMerge(commonConfig('production'), {
                 test: /\.ts$/,
                 use: [
                     "@ngtools/webpack"
-                ],
-                exclude: [/\.spec\.ts$/, /node_modules/]
+                ]
             }
         ]
     },

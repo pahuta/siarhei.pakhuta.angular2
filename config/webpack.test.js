@@ -8,7 +8,7 @@ module.exports = webpackMerge(commonConfig('development'), {
     },
 
     output: {
-        path: helper.rootPath("/dist/jit"),
+        path: helper.rootPath("/dist/test"),
         publicPath: "/",
         filename: "[name].js"
     },
@@ -23,9 +23,16 @@ module.exports = webpackMerge(commonConfig('development'), {
                     "ts-loader",
                     "angular2-template-loader"
                 ],
-                // exclude: [/\.spec\.ts$/]
-                // exclude: [/\.spec\.ts$/, /node_modules/]
                 exclude: [/node_modules/]
+            },
+            {
+                enforce: 'post',
+                test: /\.ts$/,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [
+                    /\.(e2e|spec)\.ts$/,
+                    /node_modules/
+                ]
             }
         ]
     },

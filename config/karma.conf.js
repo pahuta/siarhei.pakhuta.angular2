@@ -13,12 +13,10 @@ module.exports = function (config) {
         },
 
         files: [
-            { pattern: './config/spec-bundle.js', watched: false },
-            // { pattern: './src/assets/**/*', watched: false, included: false, served: true, nocache: false }
+            { pattern: './config/spec-bundle.js', watched: false }
         ],
 
         preprocessors: { './config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
-        // preprocessors: { './config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
 
         webpack: testWebpackConfig,
 
@@ -39,7 +37,7 @@ module.exports = function (config) {
             }
         },
 
-        reporters: ['coverage', 'remap-coverage'],
+        reporters: ['mocha', 'coverage', 'remap-coverage'],
 
         port: 9876,
 
