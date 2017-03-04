@@ -7,3 +7,6 @@ export * from './vars';
 export * from './city-weather-data';
 export * from './weather-data.model';
 export * from './visible-options-items.model';
+export * from './temperature.pipe';
+export * from './wind.pipe';
+export * from './pressure.pipe';

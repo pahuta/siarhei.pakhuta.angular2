@@ -13,7 +13,7 @@ module.exports = webpackMerge(commonConfig('development'), {
         filename: "[name].js"
     },
 
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
 
     module: {
         rules: [
@@ -30,16 +30,13 @@ module.exports = webpackMerge(commonConfig('development'), {
         ]
     },
 
-    devServer: {
-        host: 'localhost',
-        port: 3000,
-        historyApiFallback: true,
-        contentBase: "/dist/jit",
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000,
-            ignored: /node_modules/
-        }
+    node: {
+        global: true,
+        process: false,
+        crypto: 'empty',
+        module: false,
+        clearImmediate: false,
+        setImmediate: false
     }
 });
 
