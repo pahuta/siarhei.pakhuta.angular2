@@ -34,12 +34,8 @@ export class CustomCityWeatherComponent implements OnInit, OnDestroy  {
         // subscribe on change customCity.name
         this.subscription = this.store
             .select((s: InitialCustomCityState) => s.customCity)
-            .subscribe((newParam: CustomCityState): void => {
-                if (newParam && newParam.name) {
-                    this.cityNameValue = newParam.name;
-                } else {
-                    this.cityNameValue = '';
-                }
+            .subscribe(({name}: CustomCityState): void => {
+                this.cityNameValue = name;
             });
         //
 

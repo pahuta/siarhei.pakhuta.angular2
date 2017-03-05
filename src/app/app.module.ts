@@ -9,8 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainModule } from './main';
 import { NotFoundComponent } from './not-found';
 import { WeatherDetailsModule } from './weather-details';
-import { customCityWeatherReducer } from './core/store/custom-city-weather';
-import { WeatherEffects, weatherReducer } from './core/store/weather/';
+import { WeatherEffects } from './core/store/weather/';
+import { reducer } from './core/store/reducers/index';
 
 @NgModule({
     imports: [
@@ -19,8 +19,7 @@ import { WeatherEffects, weatherReducer } from './core/store/weather/';
         MainModule,
         WeatherDetailsModule,
         AppRoutingModule,
-        StoreModule.provideStore(customCityWeatherReducer),
-        StoreModule.provideStore(weatherReducer),
+        StoreModule.provideStore(reducer),
         EffectsModule.run(WeatherEffects),
     ],
     declarations: [
