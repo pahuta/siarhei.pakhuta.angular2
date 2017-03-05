@@ -1,5 +1,5 @@
-<loader [ngClass]="{'show-loader': !(data | async)?.list}"></loader>
-<div class="filters-container" [hidden]="!(data | async)?.list">
+<loader [ngClass]="{'show-loader': !data}"></loader>
+<div class="filters-container" [hidden]="!data">
     <div class="filters">
         <div class="filter-container">
             <div class="btn-group" [ngClass]="{open: isOpenFiltersMenu}">
@@ -44,7 +44,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of (data | async)?.list | filter:userSettings">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let cityWeatherData of data | filter:userSettings">
         <weather-widget [cityWeatherData]="cityWeatherData"
                         [userSettings]="userSettings">
         </weather-widget>

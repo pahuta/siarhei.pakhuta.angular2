@@ -1,33 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 
-import { UserSettingsService, WeatherService } from '../core';
-import { UserSettings, WeatherData } from '../shared';
+import { UserSettingsService } from '../core';
+import { UserSettings, WeatherData, CityWeatherData } from '../shared';
+import { InitialWeatherState } from '../core/store/weather/weather.state';
+import * as WeatherAction from '../core/store/weather/weather.actions';
 
 @Component({
     selector: 'weather',
     templateUrl: './weather.component.html',
     styleUrls: ['./weather.component.scss']
 })
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnInit, OnDestroy {
     @Input() cityCount: number;
 
-    data: Observable<WeatherData>;
+    data: CityWeatherData[];
     userSettings: UserSettings;
     isOpenFiltersMenu: boolean = false;
 
     private regularlyUpdateWeathersIntervalId: number;
+    private subscription: Subscription;
 
     constructor(
         private userSettingsService: UserSettingsService,
-        private weatherService: WeatherService
+        private store: Store<InitialWeatherState>
     ) {}
 
     ngOnInit() {
         this.updateWeatherData();
+
+        // subscribe on change customCity.name
+        this.subscription = this.store
+            .select((s: InitialWeatherState) => s.weatherData)
+            .subscribe((data: WeatherData): void => {
+                this.data = data.list;
+            });
 
         // subscribe on change userSettings. Returning userSettings object is immutable
         this.userSettingsService.getSettingsObservable().subscribe(
@@ -42,6 +53,10 @@ export class WeatherComponent implements OnInit {
                 }
             }
         );
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     setFilter(filterName: string) {
@@ -62,10 +77,6 @@ export class WeatherComponent implements OnInit {
     }
 
     private updateWeatherData() {
-        this.weatherService.getCitiesWeather(this.cityCount).subscribe(
-            (dataObservable) => {
-                this.data = dataObservable;
-            }
-        );
+        this.store.dispatch(new WeatherAction.GetWeatherRemotelyAction(this.cityCount));
     }
 }
