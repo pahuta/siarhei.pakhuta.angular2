@@ -15,11 +15,15 @@ export class WeatherService {
     ) {};
 
     // returned weather for @cityCount nearby cities
-    getCitiesWeather(cityCount: number): Subject<Subject<WeatherData>> {
+    getCitiesWeather(cityCount: number): Subject<WeatherData> {
         let citiesWeatherSubject = new Subject();
         this.locationService.getPosition()
             .subscribe(position => {
-            citiesWeatherSubject.next(this.getWeatherData(cityCount, position))
+                this.getWeatherData(cityCount, position).subscribe(
+                    weatherData => {
+                        citiesWeatherSubject.next(weatherData);
+                    }
+                );
         });
 
         return citiesWeatherSubject;

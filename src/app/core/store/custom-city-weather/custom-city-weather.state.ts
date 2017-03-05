@@ -1,12 +1,11 @@
 export interface CustomCityState {
-  name: string;
+    name: string;
 }
 
 export const initialCustomCityState: CustomCityState = {
-  name: '',
+    name: '',
 };
 
-
 export interface InitialCustomCityState {
-  customCity: CustomCityState;
+    customCity: CustomCityState;
 }

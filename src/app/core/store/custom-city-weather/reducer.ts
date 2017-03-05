@@ -6,11 +6,11 @@ import { InitialCustomCityState } from './custom-city-weather.state';
 import * as CustomCityActions from './custom-city-weather.actions';
 
 const reducers = {
-  customCity: cityNameReducer,
+    customCity: cityNameReducer,
 };
 
 const devReducer: ActionReducer<InitialCustomCityState> = compose(combineReducers)(reducers);
 
-export function reducer(state: InitialCustomCityState, action: CustomCityActions.Actions) {
+export function customCityWeatherReducer(state: InitialCustomCityState, action: CustomCityActions.Actions) {
     return devReducer(state, action);
 }
