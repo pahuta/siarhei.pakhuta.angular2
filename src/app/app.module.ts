@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './core/store/custom-city-weather/reducer';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -14,7 +16,8 @@ import { WeatherDetailsModule } from './weather-details';
         CoreModule,
         MainModule,
         WeatherDetailsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        StoreModule.provideStore(reducer),
     ],
     declarations: [
         AppComponent,
